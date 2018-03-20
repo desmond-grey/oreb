@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Oreb</string>
     <string name="action_settings">Settings</string>
+    <string name="tuning">Tuning:</string>
+    <string name="magnification">Magnification:</string>
+    <string name="left_control_pane_desc">temporary left control pane</string>
 </resources>
