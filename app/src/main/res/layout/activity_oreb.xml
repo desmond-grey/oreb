@@ -26,10 +26,9 @@
                 android:layout_marginRight="5dp">
 
                 <Space
-                    android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:layout_weight="1"
-                    />
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
 
                 <!-- Tuning -->
                 <LinearLayout
@@ -44,14 +43,14 @@
                         android:text="@string/tuning" />
 
                     <Spinner
-                        android:id="@+id/tuning"
+                        android:id="@+id/tuning_spinner"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:drawSelectorOnTop="true"
                         android:entries="@array/tunings" />
                 </LinearLayout>
 
-                <!-- Magnificatioon -->
+                <!-- Magnification -->
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -64,7 +63,7 @@
                         android:text="@string/magnification" />
 
                     <Spinner
-                        android:id="@+id/magnification"
+                        android:id="@+id/magnification_spinner"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:drawSelectorOnTop="true"
