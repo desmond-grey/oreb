@@ -11,13 +11,13 @@
         android:layout_weight="1"
         android:orientation="vertical">
 
-        <!-- toolbar -->
         <!-- TODO: update font size/style of the spinners to match the text label.  Something like: http://tekeye.uk/android/examples/ui/changing-android-spinner-text-size-->
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:orientation="vertical">
 
+            <!-- toolbar -->
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
