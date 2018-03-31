@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 
+// NOTE: FragmentPagerAdapter requires "support v4" compat fragments
 class OrebFragmentPagerAdaptor(fragmentManager: FragmentManager) : FragmentPagerAdapter(fragmentManager) {
 
     override fun getCount(): Int {

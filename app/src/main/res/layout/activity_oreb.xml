@@ -11,88 +11,12 @@
         android:layout_weight="1"
         android:orientation="vertical">
 
-        <!-- TODO: update font size/style of the spinners to match the text label.  Something like: http://tekeye.uk/android/examples/ui/changing-android-spinner-text-size-->
-        <LinearLayout
+        <FrameLayout
+            android:id="@+id/fragment_fretboard_placeholder"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:orientation="vertical">
+            android:layout_height="fill_parent">
+        </FrameLayout>
 
-            <!-- toolbar -->
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp">
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-
-                <!-- Tuning -->
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/tuning" />
-
-                    <Spinner
-                        android:id="@+id/tuning_spinner"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:drawSelectorOnTop="true"
-                        android:entries="@array/tunings" />
-                </LinearLayout>
-
-                <!-- Magnification -->
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/magnification" />
-
-                    <Spinner
-                        android:id="@+id/magnification_spinner"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:drawSelectorOnTop="true"
-                        android:entries="@array/magnifications" />
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <!-- fretboard -->
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/fretboard"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-
-                    android:layout_marginBottom="2.5dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginTop="5dp"
-
-                    android:layout_weight="1"
-                    app:srcCompat="@android:color/holo_blue_dark" />
-            </LinearLayout>
-        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
