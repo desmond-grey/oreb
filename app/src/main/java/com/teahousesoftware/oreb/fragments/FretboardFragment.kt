@@ -16,6 +16,12 @@ class FretboardFragment : Fragment(), AdapterView.OnItemSelectedListener {
         super.onCreate(savedInstanceState)
     }
 
+    companion object {
+        fun newInstance(): FretboardFragment {
+            return FretboardFragment()
+        }
+    }
+
     override fun onCreateView(
             inflater: LayoutInflater?,
             container: ViewGroup?,
@@ -41,17 +47,16 @@ class FretboardFragment : Fragment(), AdapterView.OnItemSelectedListener {
         return fretboardView
     }
 
-    // Handle Spinner Events
-    inline fun consume(f: () -> Unit): Boolean {
-        f()
-        return true
-    }
-
     override fun onItemSelected(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
         when (parent.id) {
-            R.id.tuning_spinner -> consume { tuningSpinnerItemSelected(parent.getItemAtPosition(pos) as CharSequence) }
-            R.id.magnification_spinner -> consume { magnificationSpinnerItemSelected(parent.getItemAtPosition(pos) as CharSequence) }
+            R.id.tuning_spinner -> consumeSpinnerEvent { tuningSpinnerItemSelected(parent.getItemAtPosition(pos) as CharSequence) }
+            R.id.magnification_spinner -> consumeSpinnerEvent { magnificationSpinnerItemSelected(parent.getItemAtPosition(pos) as CharSequence) }
         }
+    }
+
+    inline fun consumeSpinnerEvent(f: () -> Unit): Boolean {
+        f()
+        return true
     }
 
     override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -64,11 +69,5 @@ class FretboardFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     private fun magnificationSpinnerItemSelected(tuningName: CharSequence) {
         // TODO
-    }
-
-    companion object {
-        fun newInstance(): FretboardFragment {
-            return FretboardFragment()
-        }
     }
 }
