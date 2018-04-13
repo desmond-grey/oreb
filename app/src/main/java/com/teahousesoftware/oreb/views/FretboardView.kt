@@ -1,34 +1,69 @@
 package com.teahousesoftware.oreb.views
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Canvas
 import android.util.AttributeSet
+import android.view.ScaleGestureDetector
 import android.view.View
 import com.teahousesoftware.oreb.model.guitar.*
 import com.teahousesoftware.oreb.views.paint.styles.*
+import android.view.MotionEvent
+import org.jetbrains.anko.AnkoLogger
+import kotlin.math.max
+import kotlin.math.min
 
-class FretboardView : View {
+// TODO: guitar measurements, scaling and display density are too intertwined.  See Guitar Measurments in the README.
+class FretboardView : View, AnkoLogger {
+    private val DRAW_SCALE_MIN = 75f     // Reasonable initial value for Larrivee on Galaxy Tab S2, wide orientation
+    private val DRAW_SCALE_MAX = 250f
+
+    private val scaleGestureDetector: ScaleGestureDetector
+    private val guitar: Guitar
+
+    private var currentDrawScale: Float = DRAW_SCALE_MIN       // Driven by pinch/zoom scaling.  Start zoomed out.
+
     constructor(context: Context) : this(context, null)
     constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {}
 
-    private val PADDING = 100
+    init {
+        guitar = buildLarrivee()
+        scaleGestureDetector = ScaleGestureDetector(context, ScaleListener())
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    override fun onTouchEvent(motionEvent: MotionEvent): Boolean {
+        scaleGestureDetector.onTouchEvent(motionEvent)        // Let the ScaleGestureDetector inspect all events.
+        return true
+    }
+
+    private inner class ScaleListener : ScaleGestureDetector.SimpleOnScaleGestureListener() {
+        override fun onScale(scaleGestureDetector: ScaleGestureDetector): Boolean {
+
+            val scaleFactor = scaleGestureDetector.scaleFactor
+
+            currentDrawScale = currentDrawScale * scaleFactor
+            currentDrawScale = min(currentDrawScale, DRAW_SCALE_MAX)  // largest we can scale
+            currentDrawScale = max(currentDrawScale, DRAW_SCALE_MIN)  // smallest we can scale
+
+            invalidate()
+
+            return true
+        }
+    }
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
-        val guitar:Guitar = buildLarrivee()
-        val drawScale = (width - PADDING) / guitar.scaleLength
-
         canvas.save()
-        canvas.translate((PADDING / 2).toFloat(), (PADDING / 2).toFloat())
 
-        drawFretboard(canvas, drawScale, guitar.fretboard)
-        drawSideFretMarkers(canvas, drawScale, guitar.fretboard)
-        drawNut(canvas, drawScale, guitar.nut)
-        drawSaddle(canvas, drawScale, guitar.saddle)
-        drawFrets(canvas, drawScale, guitar.fretboard.frets)
-        drawStrings(canvas, drawScale, guitar.strings)
+        drawFretboard(canvas, currentDrawScale, guitar.fretboard)
+        drawSideFretMarkers(canvas, currentDrawScale, guitar.fretboard)
+        drawNut(canvas, currentDrawScale, guitar.nut)
+        drawSaddle(canvas, currentDrawScale, guitar.saddle)
+        drawFrets(canvas, currentDrawScale, guitar.fretboard.frets)
+        drawStrings(canvas, currentDrawScale, guitar.strings)
 
         canvas.restore()
     }

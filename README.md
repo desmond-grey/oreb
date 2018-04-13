@@ -1,3 +1,10 @@
+Guitar Measurements
+-------------------
+When buildig the Larrivee, the measurements are in inches.  But then those measurements are used
+direclty in drawing comands that take pixels.  This is fine for now, the scaling defaults make
+it work (we scale up somewhere between 750% to 2000%).  But ideally we'd have the guitar-measurments,
+the display density, and the scaling factor be independent from each other.  
+
 Logging
 -------
 We use Anko logging.  Simply have your class extend AnkoLogger and then you can do:
