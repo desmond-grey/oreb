@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Canvas
 import android.util.AttributeSet
+import android.view.GestureDetector
 import android.view.ScaleGestureDetector
 import android.view.View
 import com.teahousesoftware.oreb.model.guitar.*
@@ -19,6 +20,8 @@ class FretboardView : View, AnkoLogger {
     private val DRAW_SCALE_MAX = 250f
 
     private val scaleGestureDetector: ScaleGestureDetector
+    private val dragGestureDetector: GestureDetector
+    private var isScaling = false            // scale and drag see the same events.  isScaling boolean allows us to avoid dragging while scaling
     private val guitar: Guitar
 
     private var currentDrawScale: Float = DRAW_SCALE_MIN       // Driven by pinch/zoom scaling.  Start zoomed out.
@@ -30,17 +33,23 @@ class FretboardView : View, AnkoLogger {
     init {
         guitar = buildLarrivee()
         scaleGestureDetector = ScaleGestureDetector(context, ScaleListener())
+        dragGestureDetector = GestureDetector(context, DragListener())
     }
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(motionEvent: MotionEvent): Boolean {
-        scaleGestureDetector.onTouchEvent(motionEvent)        // Let the ScaleGestureDetector inspect all events.
+        scaleGestureDetector.onTouchEvent(motionEvent)
+        dragGestureDetector.onTouchEvent(motionEvent)
         return true
     }
 
     private inner class ScaleListener : ScaleGestureDetector.SimpleOnScaleGestureListener() {
-        override fun onScale(scaleGestureDetector: ScaleGestureDetector): Boolean {
+        override fun onScaleBegin(detector: ScaleGestureDetector): Boolean {
+            isScaling = true
+            return true
+        }
 
+        override fun onScale(scaleGestureDetector: ScaleGestureDetector): Boolean {
             val scaleFactor = scaleGestureDetector.scaleFactor
 
             currentDrawScale = currentDrawScale * scaleFactor
@@ -49,6 +58,20 @@ class FretboardView : View, AnkoLogger {
 
             invalidate()
 
+            return true
+        }
+
+        override fun onScaleEnd(detector: ScaleGestureDetector) {
+            isScaling = false
+        }
+
+    }
+
+    inner class DragListener : GestureDetector.SimpleOnGestureListener() {
+        override fun onScroll(e1: MotionEvent, e2: MotionEvent, distanceX: Float, distanceY: Float): Boolean {
+            if (!isScaling) {
+                // TODO: Implement Drag-to-Pan   https://developer.android.com/training/gestures/scale.html
+            }
             return true
         }
     }
