@@ -1,7 +1,27 @@
+To Do
+-----
+
+* refactor "music" domain model into codebase
+* guidance: key spinner
+* guidance: scale spinner
+* fretboard: tuning spinner
+* guidance: draw guidance overlay view (use new colors from illustrator mockups)
+* fretboard: implement capo'ing (spinner, etc.)
+* fretboard: handle note selection
+
+* implement drag/panning (framework code is already in place)
+* default scaling should be fit-to-width (fit fretboard length, not entire scale length)
+* implement cross-fragment communication for the spinners
+* info: handle info fragment
+* selector: implement selector fragment
+* chords: implement chords fragment
+* implement transport controls and timeline
+
+
 Guitar Measurements
 -------------------
-When buildig the Larrivee, the measurements are in inches.  But then those measurements are used
-direclty in drawing comands that take pixels.  This is fine for now, the scaling defaults make
+When building the Larrivee, the measurements are in inches.  But then those measurements are used
+directly in drawing comands that take pixels.  This is fine for now, the scaling defaults make
 it work (we scale up somewhere between 750% to 2000%).  But ideally we'd have the guitar-measurments,
 the display density, and the scaling factor be independent from each other.  
 
@@ -13,7 +33,7 @@ We use Anko logging.  Simply have your class extend AnkoLogger and then you can 
 info("message here")
 ```
 
-> NOTE: `debug()` and `verbose()` do not work. Using `info()` or above for now.
+> NOTE: `debug()` and `verbose()` do not work. Use `info()` or above for now.
 >
 > AnkoLogger checks Log.isLoggable() before issuing a logging statement.  Log.isLoggable's default
 > is to return true for INFO and above only (effectively filtering out DEBUG and VERBOSE).  This is
