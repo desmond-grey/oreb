@@ -16,7 +16,8 @@ import kotlin.math.min
 
 // TODO: guitar measurements, scaling and display density are too intertwined.  See Guitar Measurments in the README.
 class FretboardView : View, AnkoLogger {
-    private val DRAW_SCALE_MIN = 75f     // Reasonable initial value for Larrivee on Galaxy Tab S2, wide orientation
+    // Reasonable initial values for Larrivee on Galaxy Tab S2, wide orientation
+    private val DRAW_SCALE_MIN = 75f
     private val DRAW_SCALE_MAX = 250f
 
     private val scaleGestureDetector: ScaleGestureDetector
@@ -36,7 +37,9 @@ class FretboardView : View, AnkoLogger {
         dragGestureDetector = GestureDetector(context, DragListener())
     }
 
-    @SuppressLint("ClickableViewAccessibility")
+    // ----- Gesture handling
+
+    @SuppressLint("ClickableViewAccessibility")     // TODO: support accessibility?
     override fun onTouchEvent(motionEvent: MotionEvent): Boolean {
         scaleGestureDetector.onTouchEvent(motionEvent)
         dragGestureDetector.onTouchEvent(motionEvent)
@@ -75,6 +78,8 @@ class FretboardView : View, AnkoLogger {
             return true
         }
     }
+
+    // ----- Drawing
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
