@@ -40,7 +40,6 @@ info("message here")
 > supposed to be overridable by setting the system property "log.tag" but I cannot figure out how to
 > do that from an Android Studio run configuration or local property file.
 >
-> See:
->   https://github.com/Kotlin/anko/issues/489
->
+> See:  
+>   https://github.com/Kotlin/anko/issues/489  
 >   https://stackoverflow.com/questions/44931325/anko-logging-with-verbose-and-debug-isnt-working
