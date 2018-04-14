@@ -42,4 +42,5 @@ info("message here")
 >
 > See:
 >   https://github.com/Kotlin/anko/issues/489
+>
 >   https://stackoverflow.com/questions/44931325/anko-logging-with-verbose-and-debug-isnt-working
