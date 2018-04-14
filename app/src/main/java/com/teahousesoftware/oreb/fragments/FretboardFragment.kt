@@ -12,6 +12,8 @@ import com.teahousesoftware.oreb.R
 
 // Fragments must have an empty public constructor.  No constructor here, so we get default-generated empty.  Perfect.
 class FretboardFragment : Fragment(), AdapterView.OnItemSelectedListener {
+    private val TUNING_FILENAME_PREFIX = "Tuning"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -32,13 +34,16 @@ class FretboardFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
         // wire up the tuning spinner
         val tuningSpinner = fretboardView?.findViewById(R.id.tuning_spinner) as Spinner
-        val tuningSpinnerAdapter = ArrayAdapter.createFromResource(this.activity, R.array.tunings, android.R.layout.simple_spinner_item)
+        val tuningSpinnerAdapter = ArrayAdapter(
+                this.activity,
+                android.R.layout.simple_spinner_item,
+                activity.assets.list("tunings").toList().map { it.removeSuffix(".json")})
         tuningSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         tuningSpinner.adapter = tuningSpinnerAdapter
         tuningSpinner.setOnItemSelectedListener(this)
 
         // wire up the magnification setting spinner
-        val magnificationSpinner = fretboardView?.findViewById(R.id.magnification_spinner) as Spinner
+        val magnificationSpinner = fretboardView.findViewById(R.id.magnification_spinner) as Spinner
         val magnificationSpinnerAdapter = ArrayAdapter.createFromResource(this.activity, R.array.magnifications, android.R.layout.simple_spinner_item)
         magnificationSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         magnificationSpinner.adapter = magnificationSpinnerAdapter
@@ -63,11 +68,12 @@ class FretboardFragment : Fragment(), AdapterView.OnItemSelectedListener {
         // TODO
     }
 
-    private fun tuningSpinnerItemSelected(tuningName: CharSequence) {
+    private fun tuningSpinnerItemSelected(@Suppress("UNUSED_PARAMETER") tuningName: CharSequence) {
         // TODO
     }
 
-    private fun magnificationSpinnerItemSelected(tuningName: CharSequence) {
+    private fun magnificationSpinnerItemSelected(@Suppress("UNUSED_PARAMETER") tuningName: CharSequence) {
         // TODO
     }
+
 }
