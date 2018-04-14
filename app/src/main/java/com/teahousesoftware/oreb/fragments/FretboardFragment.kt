@@ -37,7 +37,7 @@ class FretboardFragment : Fragment(), AdapterView.OnItemSelectedListener {
         val tuningSpinnerAdapter = ArrayAdapter(
                 this.activity,
                 android.R.layout.simple_spinner_item,
-                activity.assets.list("tunings").toList().map { it.removeSuffix(".json")})
+                activity.assets.list("/tunings").toList().map { it.removeSuffix(".json")})
         tuningSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         tuningSpinner.adapter = tuningSpinnerAdapter
         tuningSpinner.setOnItemSelectedListener(this)
