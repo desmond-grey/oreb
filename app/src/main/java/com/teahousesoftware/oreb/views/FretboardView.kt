@@ -10,6 +10,7 @@ import android.view.View
 import com.teahousesoftware.oreb.model.guitar.*
 import com.teahousesoftware.oreb.views.paint.styles.*
 import android.view.MotionEvent
+import com.teahousesoftware.oreb.OrebActivity
 import org.jetbrains.anko.AnkoLogger
 import kotlin.math.max
 import kotlin.math.min
@@ -32,7 +33,7 @@ class FretboardView : View, AnkoLogger {
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {}
 
     init {
-        guitar = buildLarrivee()
+        guitar = (context as OrebActivity).guitar
         scaleGestureDetector = ScaleGestureDetector(context, ScaleListener())
         dragGestureDetector = GestureDetector(context, DragListener())
     }

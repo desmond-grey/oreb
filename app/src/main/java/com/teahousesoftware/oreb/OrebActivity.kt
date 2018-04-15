@@ -5,9 +5,13 @@ import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import com.teahousesoftware.oreb.fragments.FretboardFragment
 import com.teahousesoftware.oreb.fragments.OrebFragmentPagerAdaptor
+import com.teahousesoftware.oreb.model.guitar.Guitar
+import com.teahousesoftware.oreb.model.guitar.buildLarrivee
 
 class OrebActivity : AppCompatActivity() {
     private lateinit var orebFragmentPagerAdaptor: OrebFragmentPagerAdaptor
+
+    val guitar:Guitar = buildLarrivee()     // public, available to fragments and views
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
