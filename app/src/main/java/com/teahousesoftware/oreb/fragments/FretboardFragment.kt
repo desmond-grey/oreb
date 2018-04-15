@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import com.teahousesoftware.oreb.OrebActivity
 import com.teahousesoftware.oreb.R
 
 // Fragments must have an empty public constructor.  No constructor here, so we get default-generated empty.  Perfect.
@@ -35,7 +36,8 @@ class FretboardFragment : Fragment(), AdapterView.OnItemSelectedListener {
         val tuningSpinnerAdapter = ArrayAdapter(
                 this.activity,
                 android.R.layout.simple_spinner_item,
-                activity.assets.list("/tunings").toList().map { it.removeSuffix(".json")})
+                (this.activity as OrebActivity).tunings.map { it.name }
+        )
         tuningSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         tuningSpinner.adapter = tuningSpinnerAdapter
         tuningSpinner.setOnItemSelectedListener(this)
