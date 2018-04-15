@@ -119,10 +119,10 @@ class FretboardView : View, AnkoLogger {
             val xCenterOfFretArea = fret.distanceFromNut - fret.distanceFromPreviousFret / 2
 
             if (fret.fretNumber == 12) {
-                canvas.drawCircle((xCenterOfFretArea - .0625f) * scale, (fretboard.heightAtSaddle + offsetFromBottomOfFretboard) * scale, 3f, blackFill())
-                canvas.drawCircle((xCenterOfFretArea + .0625f) * scale, (fretboard.heightAtSaddle + offsetFromBottomOfFretboard) * scale, 3f, blackFill())
+                canvas.drawCircle((xCenterOfFretArea - .0625f) * scale, (fretboard.heightAtSaddle + offsetFromBottomOfFretboard) * scale, 4f, blackFill())
+                canvas.drawCircle((xCenterOfFretArea + .0625f) * scale, (fretboard.heightAtSaddle + offsetFromBottomOfFretboard) * scale, 4f, blackFill())
             } else {
-                canvas.drawCircle(xCenterOfFretArea * scale, (fretboard.heightAtSaddle + offsetFromBottomOfFretboard) * scale, 3f, blackFill())
+                canvas.drawCircle(xCenterOfFretArea * scale, (fretboard.heightAtSaddle + offsetFromBottomOfFretboard) * scale, 4f, blackFill())
             }
         }
     }
