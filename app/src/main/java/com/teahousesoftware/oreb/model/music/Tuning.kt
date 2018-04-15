@@ -4,14 +4,14 @@ import org.jetbrains.anko.AnkoLogger
 import org.json.JSONObject
 
 class Tuning(val name: String, val openStringNotes: Map<Int, PhysicalNote>) : AnkoLogger {
-    fun getOpenStringNoteForString(stringNumber: Int): PhysicalNote? {
+    fun getNoteForOpenString(stringNumber: Int): PhysicalNote? {
         return openStringNotes.get(stringNumber)
     }
 
     companion object Companion {
-        // normally tunings are read from assets.
-        // This is a hardcoded back that ensures the app always has one tuning.
-        fun defaultTuning(): Tuning {
+        // Normally tunings are read from assets.
+        // This is a hardcoded backup that ensures the app always has one tuning.
+        fun standardTuning(): Tuning {
             return Tuning(
                     "standard",
                     mapOf<Int, PhysicalNote>(

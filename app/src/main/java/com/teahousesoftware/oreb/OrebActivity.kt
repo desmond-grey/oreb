@@ -21,7 +21,7 @@ class OrebActivity : AppCompatActivity(), AnkoLogger {
         setContentView(R.layout.activity_oreb)
 
         tunings = loadTuningsFromAssets()
-        val defaultTuning:Tuning = tunings.find { it.name == "Standard" } ?: Tuning.defaultTuning()
+        val defaultTuning:Tuning = tunings.find { it.name == "Standard" } ?: Tuning.standardTuning()    // TODO: default to last one set by user
         guitar = buildAndTuneLarrivee(defaultTuning)
 
         if (savedInstanceState == null) {
