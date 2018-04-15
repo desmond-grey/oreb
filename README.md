@@ -1,21 +1,24 @@
 To Do
 -----
 
-* refactor "music" domain model into codebase
-* guidance: key spinner
-* guidance: scale spinner
-* fretboard: tuning spinner
-* guidance: draw guidance overlay view (use new colors from illustrator mockups)
-* fretboard: implement capo'ing (spinner, etc.)
-* fretboard: handle note selection
+o fretboard: tuning spinner
+  x load tunings from config files
+  . guitar should take a tuning as a constructor param
+  . spinner changes should update guitar object and cause fretboard redraw
 
-* implement drag/panning (framework code is already in place)
-* default scaling should be fit-to-width (fit fretboard length, not entire scale length)
-* implement cross-fragment communication for the spinners
-* info: handle info fragment
-* selector: implement selector fragment
-* chords: implement chords fragment
-* implement transport controls and timeline
+. guidance: key spinner
+. guidance: scale spinner
+. guidance: draw guidance overlay view (use new colors from illustrator mockups)
+. fretboard: implement capo'ing (spinner, etc.)
+. fretboard: handle note selection
+
+. implement drag/panning (framework code is already in place)
+. default scaling should be fit-to-width (fit fretboard length, not entire scale length)
+. implement cross-fragment communication for the spinners
+. info: handle info fragment
+. selector: implement selector fragment
+. chords: implement chords fragment
+. implement transport controls and timeline
 
 
 Guitar Measurements
