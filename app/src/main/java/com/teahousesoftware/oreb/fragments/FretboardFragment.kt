@@ -12,8 +12,6 @@ import com.teahousesoftware.oreb.R
 
 // Fragments must have an empty public constructor.  No constructor here, so we get default-generated empty.  Perfect.
 class FretboardFragment : Fragment(), AdapterView.OnItemSelectedListener {
-    private val TUNING_FILENAME_PREFIX = "Tuning"
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
