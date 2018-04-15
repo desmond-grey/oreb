@@ -6,22 +6,23 @@ import android.support.v7.app.AppCompatActivity
 import com.teahousesoftware.oreb.fragments.FretboardFragment
 import com.teahousesoftware.oreb.fragments.OrebFragmentPagerAdaptor
 import com.teahousesoftware.oreb.model.guitar.Guitar
-import com.teahousesoftware.oreb.model.guitar.buildLarrivee
+import com.teahousesoftware.oreb.model.guitar.buildAndTuneLarrivee
 import com.teahousesoftware.oreb.model.music.Tuning
 import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.info
 
 class OrebActivity : AppCompatActivity(), AnkoLogger {
     private lateinit var orebFragmentPagerAdaptor: OrebFragmentPagerAdaptor
 
     lateinit var tunings:List<Tuning>
-    val guitar:Guitar = buildLarrivee()     // public, available to fragments and views
+    lateinit var guitar:Guitar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_oreb)
 
-        tunings = loadTunings()
+        tunings = loadTuningsFromAssets()
+        val defaultTuning:Tuning = tunings.find { it.name == "Standard" } ?: Tuning.defaultTuning()
+        guitar = buildAndTuneLarrivee(defaultTuning)
 
         if (savedInstanceState == null) {
             // load the fretboard fragment
@@ -41,7 +42,7 @@ class OrebActivity : AppCompatActivity(), AnkoLogger {
     // ----- private
 
     // TODO: exception handling
-    private fun loadTunings(): List<Tuning> {
+    private fun loadTuningsFromAssets(): List<Tuning> {
         val tunings = mutableListOf<Tuning>()
 
         val tuningFilenames = this.assets.list("tunings").toList()

@@ -1,5 +1,6 @@
 package com.teahousesoftware.oreb.model.guitar
 
+import com.teahousesoftware.oreb.model.music.Tuning
 import java.util.ArrayList
 
 private val FRET_CALCULATION_CONSTANT = 17.817f
@@ -54,7 +55,8 @@ fun generateGroovesForSixString(height: Float): List<Groove> {
     )
 }
 
-fun buildLarrivee(): Guitar {
+fun buildAndTuneLarrivee(tuning: Tuning): Guitar {
+    // measurements are from my Larrivee, in inches.  See readme for note about measurements
     val nut = Nut(
             2.75f,
             .125f,
@@ -70,5 +72,5 @@ fun buildLarrivee(): Guitar {
             .125f,
             25.5f,
             generateGroovesForSixString(2.75f))
-    return Guitar(nut, fretboard, saddle)
+    return Guitar(nut, fretboard, saddle, tuning)
 }
