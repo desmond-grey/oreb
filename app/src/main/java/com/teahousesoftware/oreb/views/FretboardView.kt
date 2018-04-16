@@ -11,7 +11,9 @@ import com.teahousesoftware.oreb.model.guitar.*
 import com.teahousesoftware.oreb.views.paint.styles.*
 import android.view.MotionEvent
 import com.teahousesoftware.oreb.OrebActivity
+import com.teahousesoftware.oreb.model.music.TheoreticalNote
 import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.info
 import kotlin.math.max
 import kotlin.math.min
 
@@ -94,6 +96,8 @@ class FretboardView : View, AnkoLogger {
         drawFrets(canvas, currentDrawScale, guitar.fretboard.frets)
         drawStrings(canvas, currentDrawScale, guitar.strings)
 
+        drawGuidanceNotesForCMajor(canvas, currentDrawScale, guitar)
+
         canvas.restore()
     }
 
@@ -147,6 +151,25 @@ class FretboardView : View, AnkoLogger {
     private fun drawStrings(canvas: Canvas, scale: Float, strings: List<GuitarString>) {
         for (string in strings) {
             canvas.drawLine(0f, string.yPosition * scale, string.length * scale, string.yPosition * scale, blackStrokeOnePixel())
+        }
+    }
+
+    private fun drawGuidanceNotesForCMajor(canvas: Canvas, drawScale: Float, guitar: Guitar) {
+        val scale = (context as OrebActivity).scales.find { it.name == "Major" }!!
+        val key = TheoreticalNote.C
+        val scaleNotes = scale.generateNotesForKey(key)
+
+        for (string in guitar.strings) {
+            val yPosition = string.yPosition
+
+            for (fret in guitar.fretboard.frets) {
+                val frettedNote = guitar.noteTable.get(string, fret)
+                if (scaleNotes.contains(frettedNote.theoreticalNote)) {
+                    val xCenterOfFretArea = fret.distanceFromNut - fret.distanceFromPreviousFret / 2
+                    canvas.drawCircle(xCenterOfFretArea * drawScale, yPosition * drawScale, 15f, whiteFill())
+                    canvas.drawCircle(xCenterOfFretArea * drawScale, yPosition * drawScale, 15f, blackStrokeOnePixel())
+                }
+            }
         }
     }
 }
