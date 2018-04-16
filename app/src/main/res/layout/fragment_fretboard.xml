@@ -75,14 +75,8 @@
 
         android:padding="5dp">
 
-        <!-- These views overlay each other -->
         <com.teahousesoftware.oreb.views.FretboardView
             android:id="@+id/fretboardView"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent" />
-
-        <com.teahousesoftware.oreb.views.FretboardGuidanceView
-            android:id="@+id/fretboardGuidanceView"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" />
     </FrameLayout>
