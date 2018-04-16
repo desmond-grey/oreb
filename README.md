@@ -1,13 +1,11 @@
 To Do
 -----
-
 o fretboard: tuning spinner
   . tuning spinner should reflect default-tuning the setup code defaults to  
   . spinner changes should update guitar object and cause fretboard redraw
-
 . guidance: key spinner
 . guidance: scale spinner
-. guidance: draw guidance overlay view (use new colors from illustrator mockups)
+. guidance: add colors and labels to notes
 . fretboard: implement capo'ing (spinner, etc.)
 . fretboard: handle note selection
 
