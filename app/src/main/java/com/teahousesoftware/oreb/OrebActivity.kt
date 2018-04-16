@@ -7,13 +7,16 @@ import com.teahousesoftware.oreb.fragments.FretboardFragment
 import com.teahousesoftware.oreb.fragments.OrebFragmentPagerAdaptor
 import com.teahousesoftware.oreb.model.guitar.Guitar
 import com.teahousesoftware.oreb.model.guitar.buildAndTuneLarrivee
+import com.teahousesoftware.oreb.model.music.Scale
 import com.teahousesoftware.oreb.model.music.Tuning
 import org.jetbrains.anko.AnkoLogger
 
 class OrebActivity : AppCompatActivity(), AnkoLogger {
     private lateinit var orebFragmentPagerAdaptor: OrebFragmentPagerAdaptor
 
+    // these are referenced by fragments and views
     lateinit var tunings:List<Tuning>
+    lateinit var scales:List<Scale>
     lateinit var guitar:Guitar
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,6 +24,7 @@ class OrebActivity : AppCompatActivity(), AnkoLogger {
         setContentView(R.layout.activity_oreb)
 
         tunings = loadTuningsFromAssets()
+        scales = loadScalesFromAssets()
         guitar = buildAndTuneLarrivee(tunings.find { it.name == "Standard" }!!)
 
         if (savedInstanceState == null) {
@@ -43,18 +47,37 @@ class OrebActivity : AppCompatActivity(), AnkoLogger {
     private fun loadTuningsFromAssets(): List<Tuning> {
         val tunings = mutableListOf<Tuning>()
 
-        val tuningFilenames = this.assets.list("tunings").toList()
+        val tuningsAssetDir = "tunings"
+        val tuningFilenames = this.assets.list(tuningsAssetDir).toList()
         for (tuningFilename in tuningFilenames) {
-            val tuningFileInputStream = this.assets.open("tunings/" + tuningFilename)
-            val size = tuningFileInputStream.available()
-            val tuningFileBuffer = ByteArray(size)
-            tuningFileInputStream.read(tuningFileBuffer)
-            tuningFileInputStream.close()
-            val tuningAsJsonString = String(tuningFileBuffer, Charsets.UTF_8)
+            val tuningAsJsonString = readJsonAssetFile(tuningsAssetDir + "/" + tuningFilename)
             val deserializedTuning = Tuning.deserialize(tuningAsJsonString)
             tunings.add(deserializedTuning)
         }
 
         return tunings
     }
-}
+
+    private fun loadScalesFromAssets(): List<Scale> {
+        val scales = mutableListOf<Scale>()
+
+        val scalesAssetDir = "scales"
+        val scaleFilenames = this.assets.list(scalesAssetDir).toList()
+        for (scaleFilename in scaleFilenames) {
+            val scaleAsJsonString = readJsonAssetFile(scalesAssetDir + "/" + scaleFilename)
+            val deserializedscale = Scale.deserialize(scaleAsJsonString)
+            scales.add(deserializedscale)
+        }
+
+        return scales
+    }
+
+    private fun readJsonAssetFile(filename:String): String {
+        val inputStream = this.assets.open(filename)
+        val size = inputStream.available()
+        val fileBuffer = ByteArray(size)
+        inputStream.read(fileBuffer)
+        inputStream.close()
+        return String(fileBuffer, Charsets.UTF_8)
+    }
+ }

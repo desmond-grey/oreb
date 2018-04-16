@@ -10,11 +10,11 @@ class Tuning(val name: String, val openStringNotes: Map<Int, PhysicalNote>) : An
 
     companion object {
         fun deserialize(tuningsJsonString: String): Tuning {
-            val tuningsJo = JSONObject(tuningsJsonString)
-            val tuningName = tuningsJo.getString("name")
+            val tuningJo = JSONObject(tuningsJsonString)
+            val tuningName = tuningJo.getString("name")
 
             val openStringNotes = mutableMapOf<Int, PhysicalNote>()
-            val openStringNotesJo = tuningsJo.getJSONObject("openStringNotes")
+            val openStringNotesJo = tuningJo.getJSONObject("openStringNotes")
             for (stringNumberAsString in openStringNotesJo.keys()) {
                 val stringNumber = stringNumberAsString.toInt()
                 val physicalNote = PhysicalNote.valueOf(openStringNotesJo.getString(stringNumberAsString))

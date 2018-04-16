@@ -1,4 +1,4 @@
 {
-  "scaleName": "Chromatic Scale",
+  "name": "Chromatic Scale",
   "stepPattern": [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 }

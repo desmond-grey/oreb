@@ -1,4 +1,4 @@
 {
-  "scaleName": "Natural Minor",
+  "name": "Natural Minor",
   "stepPattern": [ 2, 1, 2, 2, 1, 2, 2 ]
 }

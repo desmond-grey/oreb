@@ -1,4 +1,4 @@
 {
-  "scaleName": "Pentatonic",
+  "name": "Pentatonic",
   "stepPattern": [ 2, 2, 3, 2, 3 ]
 }
