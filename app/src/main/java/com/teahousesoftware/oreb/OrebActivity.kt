@@ -21,8 +21,7 @@ class OrebActivity : AppCompatActivity(), AnkoLogger {
         setContentView(R.layout.activity_oreb)
 
         tunings = loadTuningsFromAssets()
-        val defaultTuning:Tuning = tunings.find { it.name == "Standard" } ?: Tuning.standardTuning()    // TODO: default to last one set by user
-        guitar = buildAndTuneLarrivee(defaultTuning)
+        guitar = buildAndTuneLarrivee(tunings.find { it.name == "Standard" }!!)
 
         if (savedInstanceState == null) {
             // load the fretboard fragment
@@ -41,7 +40,6 @@ class OrebActivity : AppCompatActivity(), AnkoLogger {
 
     // ----- private
 
-    // TODO: exception handling
     private fun loadTuningsFromAssets(): List<Tuning> {
         val tunings = mutableListOf<Tuning>()
 

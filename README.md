@@ -2,8 +2,7 @@ To Do
 -----
 
 o fretboard: tuning spinner
-  x load tunings from config files
-  . guitar should take a tuning as a constructor param
+  . tuning spinner should reflect default-tuning the setup code defaults to  
   . spinner changes should update guitar object and cause fretboard redraw
 
 . guidance: key spinner
