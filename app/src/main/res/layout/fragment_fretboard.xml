@@ -76,7 +76,7 @@
         android:padding="5dp">
 
         <com.teahousesoftware.oreb.fretboard.FretboardView
-            android:id="@+id/fretboardView"
+            android:id="@+id/fretboard_view"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" />
     </FrameLayout>

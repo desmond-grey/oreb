@@ -28,11 +28,11 @@ class FretboardFragment : Fragment(), AdapterView.OnItemSelectedListener {
             container: ViewGroup?,
             savedInstanceState: Bundle?): View? {
 
-        // Inflate the Fretboard view
-        val fretboardView = inflater?.inflate(R.layout.fragment_fretboard, container, false)
+        // Inflate the Fretboard Fragment layout
+        val fretboardLayout = inflater?.inflate(R.layout.fragment_fretboard, container, false)
 
         // wire up the tuning spinner
-        val tuningSpinner = fretboardView?.findViewById(R.id.tuning_spinner) as Spinner
+        val tuningSpinner = fretboardLayout?.findViewById(R.id.tuning_spinner) as Spinner
         val tuningSpinnerAdapter = ArrayAdapter(
                 this.activity,
                 android.R.layout.simple_spinner_item,
@@ -43,13 +43,13 @@ class FretboardFragment : Fragment(), AdapterView.OnItemSelectedListener {
         tuningSpinner.setOnItemSelectedListener(this)
 
         // wire up the magnification setting spinner
-        val magnificationSpinner = fretboardView.findViewById(R.id.magnification_spinner) as Spinner
+        val magnificationSpinner = fretboardLayout.findViewById(R.id.magnification_spinner) as Spinner
         val magnificationSpinnerAdapter = ArrayAdapter.createFromResource(this.activity, R.array.magnifications, android.R.layout.simple_spinner_item)
         magnificationSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         magnificationSpinner.adapter = magnificationSpinnerAdapter
         magnificationSpinner.setOnItemSelectedListener(this)
 
-        return fretboardView
+        return fretboardLayout
     }
 
     override fun onItemSelected(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
