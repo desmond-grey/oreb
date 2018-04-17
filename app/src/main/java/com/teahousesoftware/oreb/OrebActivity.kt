@@ -1,5 +1,6 @@
 package com.teahousesoftware.oreb
 
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
@@ -7,11 +8,13 @@ import com.teahousesoftware.oreb.fretboard.FretboardFragment
 import com.teahousesoftware.oreb.shared.model.guitar.Guitar
 import com.teahousesoftware.oreb.shared.model.guitar.buildAndTuneLarrivee
 import com.teahousesoftware.oreb.shared.model.music.Scale
+import com.teahousesoftware.oreb.shared.model.music.TheoreticalNote
 import com.teahousesoftware.oreb.shared.model.music.Tuning
 import org.jetbrains.anko.AnkoLogger
 
 class OrebActivity : AppCompatActivity(), AnkoLogger {
     private lateinit var orebFragmentPagerAdaptor: OrebFragmentPagerAdaptor
+    private lateinit var orebViewModel: OrebViewModel
 
     // these are referenced by fragments and views
     lateinit var tunings:List<Tuning>
@@ -25,6 +28,16 @@ class OrebActivity : AppCompatActivity(), AnkoLogger {
         tunings = loadTuningsFromAssets()
         scales = loadScalesFromAssets()
         guitar = buildAndTuneLarrivee(tunings.find { it.name == "Standard" }!!)
+
+        // setup the view model
+        orebViewModel = ViewModelProviders.of(this).get(OrebViewModel::class.java)
+        orebViewModel.tunings = tunings
+        orebViewModel.scales = scales
+
+        orebViewModel.setCurrentGuitar(guitar)
+        orebViewModel.setCurrentTuning(tunings.find { it.name == "Standard" }!!)
+        orebViewModel.setCurrentKey(TheoreticalNote.C)
+        orebViewModel.setCurrentScale(scales.find { it.name == "Major" }!!)
 
         if (savedInstanceState == null) {
             // load the fretboard fragment

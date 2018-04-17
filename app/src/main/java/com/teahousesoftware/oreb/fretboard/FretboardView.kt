@@ -1,6 +1,7 @@
 package com.teahousesoftware.oreb.fretboard
 
 import android.annotation.SuppressLint
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.graphics.Canvas
 import android.util.AttributeSet
@@ -10,6 +11,7 @@ import android.view.View
 import com.teahousesoftware.oreb.shared.model.guitar.*
 import android.view.MotionEvent
 import com.teahousesoftware.oreb.OrebActivity
+import com.teahousesoftware.oreb.OrebViewModel
 import com.teahousesoftware.oreb.shared.model.music.TheoreticalNote
 import com.teahousesoftware.oreb.shared.blackFill
 import com.teahousesoftware.oreb.shared.blackStrokeOnePixel
@@ -21,6 +23,8 @@ import kotlin.math.min
 
 // TODO: guitar measurements, scaling and display density are too intertwined.  See Guitar Measurments in the README.
 class FretboardView : View, AnkoLogger {
+    private var orebViewModel: OrebViewModel
+
     // Reasonable initial values for Larrivee on Galaxy Tab S2, wide orientation
     private val DRAW_SCALE_MIN = 75f
     private val DRAW_SCALE_MAX = 250f
@@ -28,7 +32,6 @@ class FretboardView : View, AnkoLogger {
     private val scaleGestureDetector: ScaleGestureDetector
     private val dragGestureDetector: GestureDetector
     private var isScaling = false            // scale and drag see the same events.  isScaling boolean allows us to avoid dragging while scaling
-    private val guitar: Guitar
 
     private var currentDrawScale: Float = DRAW_SCALE_MIN       // Driven by pinch/zoom scaling.  Start zoomed out.
 
@@ -37,7 +40,7 @@ class FretboardView : View, AnkoLogger {
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {}
 
     init {
-        guitar = (context as OrebActivity).guitar
+        orebViewModel = ViewModelProviders.of((context as OrebActivity)).get(OrebViewModel::class.java)
         scaleGestureDetector = ScaleGestureDetector(context, ScaleListener())
         dragGestureDetector = GestureDetector(context, DragListener())
     }
@@ -88,6 +91,8 @@ class FretboardView : View, AnkoLogger {
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
+
+        val guitar = orebViewModel.getCurrentGuitar().value!!
 
         canvas.save()
 
