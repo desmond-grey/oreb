@@ -11,16 +11,17 @@ import android.widget.Spinner
 import com.teahousesoftware.oreb.OrebActivity
 import com.teahousesoftware.oreb.R
 
-// Fragments must have an empty public constructor.  No constructor here, so we get default-generated empty.  Perfect.
+// Fragments must have an empty public constructor
 class FretboardFragment : Fragment(), AdapterView.OnItemSelectedListener {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
+    // The activity calls this to instantiate us
     companion object {
         fun newInstance(): FretboardFragment {
             return FretboardFragment()
         }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
     }
 
     override fun onCreateView(
