@@ -3,12 +3,11 @@ package com.teahousesoftware.oreb
 import android.os.Bundle
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
-import com.teahousesoftware.oreb.fragments.FretboardFragment
-import com.teahousesoftware.oreb.fragments.OrebFragmentPagerAdaptor
-import com.teahousesoftware.oreb.model.guitar.Guitar
-import com.teahousesoftware.oreb.model.guitar.buildAndTuneLarrivee
-import com.teahousesoftware.oreb.model.music.Scale
-import com.teahousesoftware.oreb.model.music.Tuning
+import com.teahousesoftware.oreb.fretboard.FretboardFragment
+import com.teahousesoftware.oreb.shared.model.guitar.Guitar
+import com.teahousesoftware.oreb.shared.model.guitar.buildAndTuneLarrivee
+import com.teahousesoftware.oreb.shared.model.music.Scale
+import com.teahousesoftware.oreb.shared.model.music.Tuning
 import org.jetbrains.anko.AnkoLogger
 
 class OrebActivity : AppCompatActivity(), AnkoLogger {

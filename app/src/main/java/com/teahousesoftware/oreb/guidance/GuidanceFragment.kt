@@ -1,4 +1,4 @@
-package com.teahousesoftware.oreb.fragments
+package com.teahousesoftware.oreb.guidance
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.teahousesoftware.oreb.R
 
 
-class ChordsFragment : Fragment() {
+class GuidanceFragment : Fragment() {
     private var pageNum: Int = 0
     private var title: String? = null
 
@@ -25,8 +25,8 @@ class ChordsFragment : Fragment() {
     }
 
     companion object {
-        fun newInstance(page: Int, title: String): ChordsFragment {
-            val chordsFragment = ChordsFragment()
+        fun newInstance(page: Int, title: String): GuidanceFragment {
+            val chordsFragment = GuidanceFragment()
             val args = Bundle()
             args.putInt("pageNum", page)
             args.putString("title", title)

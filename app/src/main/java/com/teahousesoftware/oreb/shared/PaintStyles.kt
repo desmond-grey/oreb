@@ -1,4 +1,4 @@
-package com.teahousesoftware.oreb.views.paint.styles
+package com.teahousesoftware.oreb.shared
 
 import android.graphics.Color
 import android.graphics.Paint

@@ -1,4 +1,4 @@
-package com.teahousesoftware.oreb.views
+package com.teahousesoftware.oreb.fretboard
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -7,13 +7,15 @@ import android.util.AttributeSet
 import android.view.GestureDetector
 import android.view.ScaleGestureDetector
 import android.view.View
-import com.teahousesoftware.oreb.model.guitar.*
-import com.teahousesoftware.oreb.views.paint.styles.*
+import com.teahousesoftware.oreb.shared.model.guitar.*
 import android.view.MotionEvent
 import com.teahousesoftware.oreb.OrebActivity
-import com.teahousesoftware.oreb.model.music.TheoreticalNote
+import com.teahousesoftware.oreb.shared.model.music.TheoreticalNote
+import com.teahousesoftware.oreb.shared.blackFill
+import com.teahousesoftware.oreb.shared.blackStrokeOnePixel
+import com.teahousesoftware.oreb.shared.ebonyFill
+import com.teahousesoftware.oreb.shared.whiteFill
 import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.info
 import kotlin.math.max
 import kotlin.math.min
 

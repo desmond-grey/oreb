@@ -1,8 +1,8 @@
-package com.teahousesoftware.oreb.model.guitar
+package com.teahousesoftware.oreb.shared.model.guitar
 
 import com.google.common.collect.HashBasedTable
-import com.teahousesoftware.oreb.model.music.PhysicalNote
-import com.teahousesoftware.oreb.model.music.Tuning
+import com.teahousesoftware.oreb.shared.model.music.PhysicalNote
+import com.teahousesoftware.oreb.shared.model.music.Tuning
 
 class Guitar(
         val nut: Nut,

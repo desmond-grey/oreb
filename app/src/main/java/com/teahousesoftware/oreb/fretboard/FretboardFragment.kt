@@ -1,4 +1,4 @@
-package com.teahousesoftware.oreb.fragments
+package com.teahousesoftware.oreb.fretboard
 
 import android.os.Bundle
 import android.support.v4.app.Fragment

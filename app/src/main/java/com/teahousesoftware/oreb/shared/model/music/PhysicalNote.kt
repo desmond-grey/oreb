@@ -1,4 +1,4 @@
-package com.teahousesoftware.oreb.model.music
+package com.teahousesoftware.oreb.shared.model.music
 
 enum class PhysicalNote constructor(val theoreticalNote: TheoreticalNote) {
     C0(TheoreticalNote.C),

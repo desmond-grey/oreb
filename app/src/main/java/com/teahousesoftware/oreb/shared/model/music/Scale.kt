@@ -1,4 +1,4 @@
-package com.teahousesoftware.oreb.model.music
+package com.teahousesoftware.oreb.shared.model.music
 
 import org.json.JSONObject
 

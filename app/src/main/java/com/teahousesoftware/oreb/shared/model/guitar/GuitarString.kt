@@ -1,4 +1,4 @@
-package com.teahousesoftware.oreb.model.guitar
+package com.teahousesoftware.oreb.shared.model.guitar
 
 class GuitarString (
         var stringNumber: Int,

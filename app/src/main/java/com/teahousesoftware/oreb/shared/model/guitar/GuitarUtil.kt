@@ -1,6 +1,6 @@
-package com.teahousesoftware.oreb.model.guitar
+package com.teahousesoftware.oreb.shared.model.guitar
 
-import com.teahousesoftware.oreb.model.music.Tuning
+import com.teahousesoftware.oreb.shared.model.music.Tuning
 import java.util.ArrayList
 
 private val FRET_CALCULATION_CONSTANT = 17.817f
