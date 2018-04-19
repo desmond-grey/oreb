@@ -111,10 +111,10 @@ fun twelfthNoteFillColor(): Paint {
 
 }
 
-fun ebonyFill(): Paint {
+fun transparentEbonyFill(): Paint {
     val ebonyFill = Paint()
     ebonyFill.isAntiAlias = true
-    ebonyFill.setARGB(128, 85, 93, 80)
+    ebonyFill.setARGB(32, 85, 93, 80)
     ebonyFill.style = Paint.Style.FILL
 
     return ebonyFill
@@ -136,15 +136,6 @@ fun blackFill(): Paint {
     blackFill.style = Paint.Style.FILL
 
     return blackFill
-}
-
-fun yellowFill(): Paint {
-    val yellowFill = Paint()
-    yellowFill.isAntiAlias = true
-    yellowFill.color = Color.YELLOW
-    yellowFill.style = Paint.Style.FILL
-
-    return yellowFill
 }
 
 fun blackStrokeOnePixel(): Paint {

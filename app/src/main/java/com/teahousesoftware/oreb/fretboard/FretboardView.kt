@@ -114,7 +114,7 @@ class FretboardView : View, AnkoLogger {
     }
 
     private fun drawFretboard(canvas: Canvas, scale: Float, fretboard: Fretboard) {
-        canvas.drawRect(0f, 0f, fretboard.length * scale, fretboard.heightAtNut * scale, ebonyFill())
+        canvas.drawRect(0f, 0f, fretboard.length * scale, fretboard.heightAtNut * scale, transparentEbonyFill())
         canvas.drawRect(0f, 0f, fretboard.length * scale, fretboard.heightAtNut * scale, blackStrokeOnePixel())
     }
 
