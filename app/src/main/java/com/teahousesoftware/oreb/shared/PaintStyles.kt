@@ -3,40 +3,112 @@ package com.teahousesoftware.oreb.shared
 import android.graphics.Color
 import android.graphics.Paint
 
-fun rootNoteFillColor(): Paint {
+fun firstNoteFillColor(): Paint {
     val rootNoteFillColor = Paint()
     rootNoteFillColor.isAntiAlias = true
-    rootNoteFillColor.setARGB(255, 214, 84, 59)
+    rootNoteFillColor.setARGB(255, 128, 192, 255)
     rootNoteFillColor.style = Paint.Style.FILL
-
     return rootNoteFillColor
+
+}
+
+fun secondNoteFillColor(): Paint {
+    val rootNoteFillColor = Paint()
+    rootNoteFillColor.isAntiAlias = true
+    rootNoteFillColor.setARGB(255, 128, 192, 128)
+    rootNoteFillColor.style = Paint.Style.FILL
+    return rootNoteFillColor
+
 }
 
 fun thirdNoteFillColor(): Paint {
-    val thirdNoteFillColor = Paint()
-    thirdNoteFillColor.isAntiAlias = true
-    thirdNoteFillColor.setARGB(255, 234, 211, 103)
-    thirdNoteFillColor.style = Paint.Style.FILL
+    val rootNoteFillColor = Paint()
+    rootNoteFillColor.isAntiAlias = true
+    rootNoteFillColor.setARGB(255, 192, 224, 128)
+    rootNoteFillColor.style = Paint.Style.FILL
+    return rootNoteFillColor
 
-    return thirdNoteFillColor
+}
+
+fun fourthNoteFillColor(): Paint {
+    val rootNoteFillColor = Paint()
+    rootNoteFillColor.isAntiAlias = true
+    rootNoteFillColor.setARGB(255, 255, 255, 128)
+    rootNoteFillColor.style = Paint.Style.FILL
+    return rootNoteFillColor
+
 }
 
 fun fifthNoteFillColor(): Paint {
-    val fifthNoteFillColor = Paint()
-    fifthNoteFillColor.isAntiAlias = true
-    fifthNoteFillColor.setARGB(255, 128, 166, 33)
-    fifthNoteFillColor.style = Paint.Style.FILL
+    val rootNoteFillColor = Paint()
+    rootNoteFillColor.isAntiAlias = true
+    rootNoteFillColor.setARGB(255, 255, 223, 128)
+    rootNoteFillColor.style = Paint.Style.FILL
+    return rootNoteFillColor
 
-    return fifthNoteFillColor
+}
+
+fun sixthNoteFillColor(): Paint {
+    val rootNoteFillColor = Paint()
+    rootNoteFillColor.isAntiAlias = true
+    rootNoteFillColor.setARGB(255, 255, 192, 128)
+    rootNoteFillColor.style = Paint.Style.FILL
+    return rootNoteFillColor
+
 }
 
 fun seventhNoteFillColor(): Paint {
-    val seventhNoteFillColor = Paint()
-    seventhNoteFillColor.isAntiAlias = true
-    seventhNoteFillColor.setARGB(255, 56, 107, 149)
-    seventhNoteFillColor.style = Paint.Style.FILL
+    val rootNoteFillColor = Paint()
+    rootNoteFillColor.isAntiAlias = true
+    rootNoteFillColor.setARGB(255, 255, 160, 128)
+    rootNoteFillColor.style = Paint.Style.FILL
+    return rootNoteFillColor
 
-    return seventhNoteFillColor
+}
+
+fun eighthNoteFillColor(): Paint {
+    val rootNoteFillColor = Paint()
+    rootNoteFillColor.isAntiAlias = true
+    rootNoteFillColor.setARGB(255, 255, 128, 128)
+    rootNoteFillColor.style = Paint.Style.FILL
+    return rootNoteFillColor
+
+}
+
+fun ninthNoteFillColor(): Paint {
+    val rootNoteFillColor = Paint()
+    rootNoteFillColor.isAntiAlias = true
+    rootNoteFillColor.setARGB(255, 223, 128, 160)
+    rootNoteFillColor.style = Paint.Style.FILL
+    return rootNoteFillColor
+
+}
+
+fun tenthNoteFillColor(): Paint {
+    val rootNoteFillColor = Paint()
+    rootNoteFillColor.isAntiAlias = true
+    rootNoteFillColor.setARGB(255, 192, 128, 192)
+    rootNoteFillColor.style = Paint.Style.FILL
+    return rootNoteFillColor
+
+}
+
+fun eleventhNoteFillColor(): Paint {
+    val rootNoteFillColor = Paint()
+    rootNoteFillColor.isAntiAlias = true
+    rootNoteFillColor.setARGB(255, 160, 128, 223)
+    rootNoteFillColor.style = Paint.Style.FILL
+    return rootNoteFillColor
+
+}
+
+fun twelfthNoteFillColor(): Paint {
+    val rootNoteFillColor = Paint()
+    rootNoteFillColor.isAntiAlias = true
+    rootNoteFillColor.setARGB(255, 128, 128, 255)
+    rootNoteFillColor.style = Paint.Style.FILL
+    return rootNoteFillColor
+
 }
 
 fun ebonyFill(): Paint {

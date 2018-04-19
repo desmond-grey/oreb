@@ -12,12 +12,9 @@ import com.teahousesoftware.oreb.shared.model.guitar.*
 import android.view.MotionEvent
 import com.teahousesoftware.oreb.OrebActivity
 import com.teahousesoftware.oreb.OrebViewModel
+import com.teahousesoftware.oreb.shared.*
 import com.teahousesoftware.oreb.shared.model.music.TheoreticalNote
-import com.teahousesoftware.oreb.shared.blackFill
-import com.teahousesoftware.oreb.shared.blackStrokeOnePixel
-import com.teahousesoftware.oreb.shared.ebonyFill
 import com.teahousesoftware.oreb.shared.model.music.Scale
-import com.teahousesoftware.oreb.shared.whiteFill
 import org.jetbrains.anko.AnkoLogger
 import kotlin.math.max
 import kotlin.math.min
@@ -172,9 +169,11 @@ class FretboardView : View, AnkoLogger {
     private fun drawGuidanceNotes(
             canvas: Canvas,
             drawScale: Float,
-            guitar: Guitar, key: TheoreticalNote,
+            guitar: Guitar,
+            key: TheoreticalNote,
             scale: Scale) {
         val scaleNotes = scale.generateNotesForKey(key)
+        val chromaticScaleNotes = orebViewModel.scales.find { it.name == "Chromatic Scale" }!!.generateNotesForKey(key)
 
         for (string in guitar.strings) {
             val yPosition = string.yPosition
@@ -183,7 +182,26 @@ class FretboardView : View, AnkoLogger {
                 val frettedNote = guitar.noteTable.get(string, fret)
                 if (scaleNotes.contains(frettedNote.theoreticalNote)) {
                     val xCenterOfFretArea = fret.distanceFromNut - fret.distanceFromPreviousFret / 2
-                    canvas.drawCircle(xCenterOfFretArea * drawScale, yPosition * drawScale, 15f, whiteFill())
+
+                    var fillColor = whiteFill()    // default fill
+                    val noteNumber = chromaticScaleNotes.indexOf(frettedNote.theoreticalNote)
+                    when (noteNumber) {
+                        0 -> fillColor = firstNoteFillColor()
+                        1 -> fillColor = secondNoteFillColor()
+                        2 -> fillColor = thirdNoteFillColor()
+                        3 -> fillColor = fourthNoteFillColor()
+                        4 -> fillColor = fifthNoteFillColor()
+                        5 -> fillColor = sixthNoteFillColor()
+                        6 -> fillColor = seventhNoteFillColor()
+                        7 -> fillColor = eighthNoteFillColor()
+                        8 -> fillColor = ninthNoteFillColor()
+                        9 -> fillColor = tenthNoteFillColor()
+                        10 -> fillColor = eleventhNoteFillColor()
+                        11 -> fillColor = twelfthNoteFillColor()
+                        else -> { whiteFill() }
+                    }
+
+                    canvas.drawCircle(xCenterOfFretArea * drawScale, yPosition * drawScale, 15f, fillColor)
                     canvas.drawCircle(xCenterOfFretArea * drawScale, yPosition * drawScale, 15f, blackStrokeOnePixel())
                 }
             }
