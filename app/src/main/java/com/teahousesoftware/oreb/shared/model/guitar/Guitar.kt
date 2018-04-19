@@ -4,7 +4,7 @@ import com.google.common.collect.HashBasedTable
 import com.teahousesoftware.oreb.shared.model.music.PhysicalNote
 import com.teahousesoftware.oreb.shared.model.music.Tuning
 
-class Guitar(
+data class Guitar(
         val nut: Nut,
         val fretboard: Fretboard,
         val saddle: Saddle,

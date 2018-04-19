@@ -16,6 +16,7 @@ import com.teahousesoftware.oreb.shared.model.music.TheoreticalNote
 import com.teahousesoftware.oreb.shared.blackFill
 import com.teahousesoftware.oreb.shared.blackStrokeOnePixel
 import com.teahousesoftware.oreb.shared.ebonyFill
+import com.teahousesoftware.oreb.shared.model.music.Scale
 import com.teahousesoftware.oreb.shared.whiteFill
 import org.jetbrains.anko.AnkoLogger
 import kotlin.math.max
@@ -92,7 +93,8 @@ class FretboardView : View, AnkoLogger {
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
-        val guitar = orebViewModel.getCurrentGuitar().value!!
+        // TODO: should I be accessing ViewModel from this custom view?
+        val guitar = orebViewModel.currentGuitar().value!!
 
         canvas.save()
 
@@ -103,7 +105,13 @@ class FretboardView : View, AnkoLogger {
         drawFrets(canvas, currentDrawScale, guitar.fretboard.frets)
         drawStrings(canvas, currentDrawScale, guitar.strings)
 
-        drawGuidanceNotesForCMajor(canvas, currentDrawScale, guitar)
+        drawGuidanceNotes(
+                canvas,
+                currentDrawScale,
+                guitar,
+                orebViewModel.currentKey().value!!,
+                orebViewModel.currentScale().value!!
+        )
 
         canvas.restore()
     }
@@ -161,9 +169,11 @@ class FretboardView : View, AnkoLogger {
         }
     }
 
-    private fun drawGuidanceNotesForCMajor(canvas: Canvas, drawScale: Float, guitar: Guitar) {
-        val scale = (context as OrebActivity).scales.find { it.name == "Major" }!!
-        val key = TheoreticalNote.C
+    private fun drawGuidanceNotes(
+            canvas: Canvas,
+            drawScale: Float,
+            guitar: Guitar, key: TheoreticalNote,
+            scale: Scale) {
         val scaleNotes = scale.generateNotesForKey(key)
 
         for (string in guitar.strings) {

@@ -35,7 +35,6 @@ class OrebActivity : AppCompatActivity(), AnkoLogger {
         orebViewModel.scales = scales
 
         orebViewModel.setCurrentGuitar(guitar)
-        orebViewModel.setCurrentTuning(tunings.find { it.name == "Standard" }!!)
         orebViewModel.setCurrentKey(TheoreticalNote.C)
         orebViewModel.setCurrentScale(scales.find { it.name == "Major" }!!)
 

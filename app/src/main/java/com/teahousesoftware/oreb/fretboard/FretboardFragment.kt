@@ -1,5 +1,6 @@
 package com.teahousesoftware.oreb.fretboard
 
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -9,10 +10,15 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import com.teahousesoftware.oreb.OrebActivity
+import com.teahousesoftware.oreb.OrebViewModel
 import com.teahousesoftware.oreb.R
+import org.jetbrains.anko.AnkoLogger
 
 // Fragments must have an empty public constructor
-class FretboardFragment : Fragment(), AdapterView.OnItemSelectedListener {
+class FretboardFragment : Fragment(), AdapterView.OnItemSelectedListener, AnkoLogger {
+    private lateinit var orebViewModel: OrebViewModel
+    private lateinit var fretboardView: FretboardView
+
     // The activity calls this to instantiate us
     companion object {
         fun newInstance(): FretboardFragment {
@@ -22,6 +28,7 @@ class FretboardFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        orebViewModel = ViewModelProviders.of(this.activity).get(OrebViewModel::class.java)
     }
 
     override fun onCreateView(
@@ -29,19 +36,23 @@ class FretboardFragment : Fragment(), AdapterView.OnItemSelectedListener {
             container: ViewGroup?,
             savedInstanceState: Bundle?): View? {
 
+        val orebActivity = (this.activity as OrebActivity)
+
         // Inflate the Fretboard Fragment layout
         val fretboardLayout = inflater?.inflate(R.layout.fragment_fretboard, container, false)
+        this.fretboardView = fretboardLayout?.findViewById(R.id.fretboard_view) as FretboardView
 
         // wire up the tuning spinner
-        val tuningSpinner = fretboardLayout?.findViewById(R.id.tuning_spinner) as Spinner
+        val tuningSpinner = fretboardLayout.findViewById(R.id.tuning_spinner) as Spinner
         val tuningSpinnerAdapter = ArrayAdapter(
                 this.activity,
                 android.R.layout.simple_spinner_item,
-                (this.activity as OrebActivity).tunings.map { it.name }
+                orebActivity.tunings.map { it.name }
         )
         tuningSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         tuningSpinner.adapter = tuningSpinnerAdapter
         tuningSpinner.setOnItemSelectedListener(this)
+        tuningSpinner.setSelection(orebActivity.tunings.indexOf(orebViewModel.currentGuitar().value!!.tuning))
 
         // wire up the magnification setting spinner
         val magnificationSpinner = fretboardLayout.findViewById(R.id.magnification_spinner) as Spinner
@@ -69,12 +80,14 @@ class FretboardFragment : Fragment(), AdapterView.OnItemSelectedListener {
         // TODO
     }
 
-    private fun tuningSpinnerItemSelected(@Suppress("UNUSED_PARAMETER") tuningName: CharSequence) {
-        // TODO
+    private fun tuningSpinnerItemSelected(tuningName: CharSequence) {
+        val newTuning = this.orebViewModel.tunings.find { it.name == tuningName }!!
+        val guitarWithNewTuning = this.orebViewModel.currentGuitar().value!!.copy(tuning = newTuning)
+        orebViewModel.setCurrentGuitar(guitarWithNewTuning)
+        fretboardView.invalidate()
     }
 
     private fun magnificationSpinnerItemSelected(@Suppress("UNUSED_PARAMETER") tuningName: CharSequence) {
         // TODO
     }
-
 }
