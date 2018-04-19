@@ -1,8 +1,5 @@
 To Do
 -----
-o fretboard: tuning spinner
-  . tuning spinner should reflect default-tuning the setup code defaults to  
-  . spinner changes should update guitar object and cause fretboard redraw
 . guidance: key spinner
 . guidance: scale spinner
 . guidance: add colors and labels to notes
