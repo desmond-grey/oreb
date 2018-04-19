@@ -1,8 +1,8 @@
 To Do
 -----
+. wire-up magnification spinner.  Set default zoom to fit-to-width.
 . guidance: key spinner
 . guidance: scale spinner
-. guidance: add colors and labels to notes
 . fretboard: implement capo'ing (spinner, etc.)
 . fretboard: handle note selection
 
