@@ -91,7 +91,7 @@ class FretboardView : View, AnkoLogger {
         super.onDraw(canvas)
 
         // TODO: should I be accessing ViewModel from this custom view?
-        val guitar = orebViewModel.currentGuitar().value!!
+        val guitar = orebViewModel.guitar.value!!
 
         canvas.save()
 
@@ -106,8 +106,8 @@ class FretboardView : View, AnkoLogger {
                 canvas,
                 currentDrawScale,
                 guitar,
-                orebViewModel.currentKey().value!!,
-                orebViewModel.currentScale().value!!
+                orebViewModel.key.value!!,
+                orebViewModel.scale.value!!
         )
 
         canvas.restore()
@@ -198,7 +198,9 @@ class FretboardView : View, AnkoLogger {
                         9 -> fillColor = tenthNoteFillColor()
                         10 -> fillColor = eleventhNoteFillColor()
                         11 -> fillColor = twelfthNoteFillColor()
-                        else -> { whiteFill() }
+                        else -> {
+                            whiteFill()
+                        }
                     }
 
                     canvas.drawCircle(xCenterOfFretArea * drawScale, yPosition * drawScale, 15f, fillColor)

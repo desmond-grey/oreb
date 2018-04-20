@@ -12,31 +12,7 @@ class OrebViewModel() : ViewModel() {
     lateinit var tunings:List<Tuning>
     lateinit var scales:List<Scale>
 
-    private val currentGuitar = MutableLiveData<Guitar>()
-    private val currentKey = MutableLiveData<TheoreticalNote>()
-    private val currentScale = MutableLiveData<Scale>()
-
-    fun currentGuitar(): LiveData<Guitar> {
-        return currentGuitar
-    }
-
-    fun setCurrentGuitar(guitar: Guitar) {
-        currentGuitar.value = guitar
-    }
-
-    fun currentKey(): LiveData<TheoreticalNote> {
-        return currentKey
-    }
-
-    fun setCurrentKey(key: TheoreticalNote) {
-        currentKey.value = key
-    }
-
-    fun currentScale(): LiveData<Scale> {
-        return currentScale
-    }
-
-    fun setCurrentScale(scale: Scale) {
-        currentScale.value = scale
-    }
+    val guitar = MutableLiveData<Guitar>()
+    val key = MutableLiveData<TheoreticalNote>()
+    val scale = MutableLiveData<Scale>()
 }
