@@ -52,7 +52,7 @@ class FretboardFragment : Fragment(), AdapterView.OnItemSelectedListener, AnkoLo
         tuningSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         tuningSpinner.adapter = tuningSpinnerAdapter
         tuningSpinner.setOnItemSelectedListener(this)
-        tuningSpinner.setSelection(orebActivity.tunings.indexOf(orebViewModel.guitar.value!!.tuning))
+        tuningSpinner.setSelection(orebActivity.tunings.indexOf(orebViewModel.guitar.tuning))
 
         // wire up the magnification setting spinner
         val magnificationSpinner = fretboardLayout.findViewById(R.id.magnification_spinner) as Spinner
@@ -82,8 +82,8 @@ class FretboardFragment : Fragment(), AdapterView.OnItemSelectedListener, AnkoLo
 
     private fun tuningSpinnerItemSelected(tuningName: CharSequence) {
         val newTuning = this.orebViewModel.tunings.find { it.name == tuningName }!!
-        val guitarWithNewTuning = this.orebViewModel.guitar.value!!.copy(tuning = newTuning)
-        orebViewModel.guitar.value = guitarWithNewTuning
+        val guitarWithNewTuning = this.orebViewModel.guitar.copy(tuning = newTuning)
+        orebViewModel.guitar = guitarWithNewTuning
         fretboardView.invalidate()
     }
 

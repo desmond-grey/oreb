@@ -91,7 +91,7 @@ class FretboardView : View, AnkoLogger {
         super.onDraw(canvas)
 
         // TODO: should I be accessing ViewModel from this custom view?
-        val guitar = orebViewModel.guitar.value!!
+        val guitar = orebViewModel.guitar
 
         canvas.save()
 
@@ -106,8 +106,8 @@ class FretboardView : View, AnkoLogger {
                 canvas,
                 currentDrawScale,
                 guitar,
-                orebViewModel.key.value!!,
-                orebViewModel.scale.value!!
+                orebViewModel.key,
+                orebViewModel.scale
         )
 
         canvas.restore()

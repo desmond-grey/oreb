@@ -34,9 +34,9 @@ class OrebActivity : AppCompatActivity(), AnkoLogger {
         orebViewModel.tunings = tunings
         orebViewModel.scales = scales
 
-        orebViewModel.guitar.value = guitar
-        orebViewModel.key.value = TheoreticalNote.C
-        orebViewModel.scale.value = scales.find { it.name == "Major" }!!
+        orebViewModel.guitar = guitar
+        orebViewModel.key = TheoreticalNote.C
+        orebViewModel.scale = scales.find { it.name == "Major" }!!
 
         if (savedInstanceState == null) {
             // load the fretboard fragment
