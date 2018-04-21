@@ -12,12 +12,18 @@ import android.widget.Spinner
 import com.teahousesoftware.oreb.OrebActivity
 import com.teahousesoftware.oreb.OrebViewModel
 import com.teahousesoftware.oreb.R
+import com.teahousesoftware.oreb.shared.model.guitar.Guitar
 import org.jetbrains.anko.AnkoLogger
 
 // Fragments must have an empty public constructor
 class FretboardFragment : Fragment(), AdapterView.OnItemSelectedListener, AnkoLogger {
     private lateinit var orebViewModel: OrebViewModel
     private lateinit var fretboardView: FretboardView
+
+    enum class MAGNIFICATIONS(val descriptiveName: String) {
+        FIT_TO_NECK_WIDTH("Fit To Neck Width"),
+        FIT_TO_FRETBOARD_LENGTH("Fit To Fretboard Length")
+    }
 
     // The activity calls this to instantiate us
     companion object {
@@ -56,10 +62,15 @@ class FretboardFragment : Fragment(), AdapterView.OnItemSelectedListener, AnkoLo
 
         // wire up the magnification setting spinner
         val magnificationSpinner = fretboardLayout.findViewById(R.id.magnification_spinner) as Spinner
-        val magnificationSpinnerAdapter = ArrayAdapter.createFromResource(this.activity, R.array.magnifications, android.R.layout.simple_spinner_item)
+        val magnificationSpinnerAdapter = ArrayAdapter(
+                this.activity,
+                android.R.layout.simple_spinner_item,
+                MAGNIFICATIONS.values().map { it.descriptiveName }
+        )
         magnificationSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         magnificationSpinner.adapter = magnificationSpinnerAdapter
         magnificationSpinner.setOnItemSelectedListener(this)
+        magnificationSpinner.setSelection(MAGNIFICATIONS.FIT_TO_FRETBOARD_LENGTH.ordinal)
 
         return fretboardLayout
     }
@@ -87,7 +98,35 @@ class FretboardFragment : Fragment(), AdapterView.OnItemSelectedListener, AnkoLo
         fretboardView.invalidate()
     }
 
-    private fun magnificationSpinnerItemSelected(@Suppress("UNUSED_PARAMETER") tuningName: CharSequence) {
-        // TODO
+    private fun magnificationSpinnerItemSelected(magnificationName: CharSequence) {
+        when (magnificationName) {
+            MAGNIFICATIONS.FIT_TO_NECK_WIDTH.descriptiveName -> {
+                val newDrawScale = calculateDrawScaleForFitToNeckWidth(
+                        orebViewModel.guitar,
+                        fretboardView.height
+                )
+                orebViewModel.drawScale = newDrawScale
+                fretboardView.invalidate()
+            }
+
+            MAGNIFICATIONS.FIT_TO_FRETBOARD_LENGTH.descriptiveName -> {
+                val newDrawScale = calculateDrawScaleForFitToFretboardLength(
+                        orebViewModel.guitar,
+                        fretboardView.width
+                )
+                orebViewModel.drawScale = newDrawScale
+                fretboardView.invalidate()
+            }
+        }
+    }
+
+    private fun calculateDrawScaleForFitToNeckWidth(guitar: Guitar, viewHeightInPixels: Int): Float {
+        // see README about measurement units
+        return viewHeightInPixels / guitar.fretboard.heightAtSaddle
+    }
+
+    private fun calculateDrawScaleForFitToFretboardLength(guitar: Guitar, viewWidthInPixels: Int): Float {
+        // see README about measurement units
+        return viewWidthInPixels / guitar.fretboard.length
     }
 }
