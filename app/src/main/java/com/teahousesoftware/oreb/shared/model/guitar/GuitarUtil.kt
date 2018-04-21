@@ -55,7 +55,7 @@ fun generateGroovesForSixString(height: Float): List<Groove> {
     )
 }
 
-fun buildAndTuneLarrivee(tuning: Tuning): Guitar {
+fun buildAndTuneLarrivee(tuning: Tuning, capo: Capo): Guitar {
     // measurements are from my Larrivee, in inches.  See readme for note about measurements
     val nut = Nut(
             2.75f,
@@ -72,5 +72,5 @@ fun buildAndTuneLarrivee(tuning: Tuning): Guitar {
             .125f,
             25.5f,
             generateGroovesForSixString(2.75f))
-    return Guitar(nut, fretboard, saddle, tuning)
+    return Guitar(nut, fretboard, saddle, tuning, capo)
 }

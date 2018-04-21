@@ -3,7 +3,10 @@ package com.teahousesoftware.oreb.shared.model.music
 import org.jetbrains.anko.AnkoLogger
 import org.json.JSONObject
 
-class Tuning(val name: String, val openStringNotes: Map<Int, PhysicalNote>) : AnkoLogger {
+class Tuning(
+        val name: String,
+        val openStringNotes: Map<Int, PhysicalNote>) : AnkoLogger {
+
     fun getNoteForOpenString(stringNumber: Int): PhysicalNote? {
         return openStringNotes.get(stringNumber)
     }

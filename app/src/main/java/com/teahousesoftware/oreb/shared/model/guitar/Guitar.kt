@@ -8,7 +8,8 @@ data class Guitar(
         val nut: Nut,
         val fretboard: Fretboard,
         val saddle: Saddle,
-        val tuning: Tuning) {
+        val tuning: Tuning,
+        val capo:Capo) {
     val scaleLength:Float = this.saddle.xPosition - this.nut.xPosition
     val strings: List<GuitarString> = generateStrings(this.nut, this.saddle)
     val noteTable:HashBasedTable<GuitarString, Fret, PhysicalNote> = HashBasedTable.create()
@@ -16,12 +17,14 @@ data class Guitar(
     init {
         val allPhysicalNotes = PhysicalNote.values()
         for (string in strings) {
-            val firstNote = tuning.getNoteForOpenString(string.stringNumber)!!  // NPE is string not found
+            val firstNote = tuning.getNoteForOpenString(string.stringNumber)!!
 
             var noteOrdinal = firstNote.ordinal
             for (fret in fretboard.frets) {
-                val thisNote = allPhysicalNotes[noteOrdinal]
-                noteTable.put(string, fret, thisNote)
+                if (fret.fretNumber >= capo.getCapodFretForString(string.stringNumber)) {
+                    val thisNote = allPhysicalNotes[noteOrdinal]
+                    noteTable.put(string, fret, thisNote)
+                }
 
                 noteOrdinal++
             }

@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import com.teahousesoftware.oreb.fretboard.FretboardFragment
-import com.teahousesoftware.oreb.shared.model.guitar.Guitar
+import com.teahousesoftware.oreb.shared.model.guitar.Capo
 import com.teahousesoftware.oreb.shared.model.guitar.buildAndTuneLarrivee
 import com.teahousesoftware.oreb.shared.model.music.Scale
 import com.teahousesoftware.oreb.shared.model.music.TheoreticalNote
@@ -16,30 +16,29 @@ class OrebActivity : AppCompatActivity(), AnkoLogger {
     private lateinit var orebFragmentPagerAdaptor: OrebFragmentPagerAdaptor
     private lateinit var orebViewModel: OrebViewModel
 
-    // these are referenced by fragments and views
-    lateinit var tunings:List<Tuning>
-    lateinit var scales:List<Scale>
-    lateinit var guitar:Guitar
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_oreb)
 
-        tunings = loadTuningsFromAssets()
-        scales = loadScalesFromAssets()
-        guitar = buildAndTuneLarrivee(tunings.find { it.name == "Standard" }!!)
 
         // setup the view model
         orebViewModel = ViewModelProviders.of(this).get(OrebViewModel::class.java)
+
+        val capos = loadCaposFromAssets()
+        val tunings = loadTuningsFromAssets()
+
+        orebViewModel.capos = capos
         orebViewModel.tunings = tunings
-        orebViewModel.scales = scales
+        orebViewModel.scales = loadScalesFromAssets()
 
-        orebViewModel.guitar = guitar
+        orebViewModel.guitar = buildAndTuneLarrivee(
+                tunings.find { it.name == "Standard" }!!,
+                capos.find { it.name == "None" }!!)
         orebViewModel.key = TheoreticalNote.C
-        orebViewModel.scale = scales.find { it.name == "Major" }!!
+        orebViewModel.scale = loadScalesFromAssets().find { it.name == "Major" }!!
 
+        // load the fretboard fragment
         if (savedInstanceState == null) {
-            // load the fretboard fragment
             supportFragmentManager
                     .beginTransaction()
                     // we use a backwards compatible ("support") fragment here to match what the viewPager needs ("support" fragments)
@@ -55,6 +54,19 @@ class OrebActivity : AppCompatActivity(), AnkoLogger {
 
     // ----- private
 
+    private fun loadCaposFromAssets(): List<Capo> {
+        val capos = mutableListOf<Capo>()
+
+        val caposAssetDir = "capos"
+        val capoFilenames = this.assets.list(caposAssetDir).toList()
+        for (capoFilename in capoFilenames) {
+            val capoAsJsonString = readJsonAssetFile(caposAssetDir + "/" + capoFilename)
+            capos.add(Capo.deserialize(capoAsJsonString))
+        }
+
+        return capos
+    }
+
     private fun loadTuningsFromAssets(): List<Tuning> {
         val tunings = mutableListOf<Tuning>()
 
@@ -62,8 +74,7 @@ class OrebActivity : AppCompatActivity(), AnkoLogger {
         val tuningFilenames = this.assets.list(tuningsAssetDir).toList()
         for (tuningFilename in tuningFilenames) {
             val tuningAsJsonString = readJsonAssetFile(tuningsAssetDir + "/" + tuningFilename)
-            val deserializedTuning = Tuning.deserialize(tuningAsJsonString)
-            tunings.add(deserializedTuning)
+            tunings.add(Tuning.deserialize(tuningAsJsonString))
         }
 
         return tunings
@@ -76,8 +87,7 @@ class OrebActivity : AppCompatActivity(), AnkoLogger {
         val scaleFilenames = this.assets.list(scalesAssetDir).toList()
         for (scaleFilename in scaleFilenames) {
             val scaleAsJsonString = readJsonAssetFile(scalesAssetDir + "/" + scaleFilename)
-            val deserializedscale = Scale.deserialize(scaleAsJsonString)
-            scales.add(deserializedscale)
+            scales.add(Scale.deserialize(scaleAsJsonString))
         }
 
         return scales

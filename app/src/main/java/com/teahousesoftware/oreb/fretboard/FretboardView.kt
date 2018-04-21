@@ -96,6 +96,7 @@ class FretboardView : View, AnkoLogger {
         drawSaddle(canvas, drawScale, guitar.saddle)
         drawFrets(canvas, drawScale, guitar.fretboard.frets)
         drawStrings(canvas, drawScale, guitar.strings)
+        drawCapo(canvas, drawScale, guitar)
 
         drawGuidanceNotes(
                 canvas,
@@ -161,6 +162,11 @@ class FretboardView : View, AnkoLogger {
         }
     }
 
+    @Suppress("UNUSED_PARAMETER")
+    private fun drawCapo(canvas: Canvas, drawScale: Float, guitar: Guitar) {
+        // TODO
+    }
+
     private fun drawGuidanceNotes(
             canvas: Canvas,
             drawScale: Float,
@@ -175,7 +181,7 @@ class FretboardView : View, AnkoLogger {
 
             for (fret in guitar.fretboard.frets) {
                 val frettedNote = guitar.noteTable.get(string, fret)
-                if (scaleNotes.contains(frettedNote.theoreticalNote)) {
+                if (scaleNotes.contains(frettedNote?.theoreticalNote)) {
                     val xCenterOfFretArea = fret.distanceFromNut - fret.distanceFromPreviousFret / 2
 
                     var fillColor = whiteFill()    // default fill

@@ -42,23 +42,33 @@ class FretboardFragment : Fragment(), AdapterView.OnItemSelectedListener, AnkoLo
             container: ViewGroup?,
             savedInstanceState: Bundle?): View? {
 
-        val orebActivity = (this.activity as OrebActivity)
-
         // Inflate the Fretboard Fragment layout
         val fretboardLayout = inflater?.inflate(R.layout.fragment_fretboard, container, false)
         this.fretboardView = fretboardLayout?.findViewById(R.id.fretboard_view) as FretboardView
+
+        // wire up the capo spinner
+        val capoSpinner = fretboardLayout.findViewById(R.id.capo_spinner) as Spinner
+        val capoSpinnerAdapter = ArrayAdapter(
+                this.activity,
+                android.R.layout.simple_spinner_item,
+                orebViewModel.capos.map { it.name }
+        )
+        capoSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        capoSpinner.adapter = capoSpinnerAdapter
+        capoSpinner.setOnItemSelectedListener(this)
+        capoSpinner.setSelection(orebViewModel.capos.indexOf(orebViewModel.guitar.capo))
 
         // wire up the tuning spinner
         val tuningSpinner = fretboardLayout.findViewById(R.id.tuning_spinner) as Spinner
         val tuningSpinnerAdapter = ArrayAdapter(
                 this.activity,
                 android.R.layout.simple_spinner_item,
-                orebActivity.tunings.map { it.name }
+                orebViewModel.tunings.map { it.name }
         )
         tuningSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         tuningSpinner.adapter = tuningSpinnerAdapter
         tuningSpinner.setOnItemSelectedListener(this)
-        tuningSpinner.setSelection(orebActivity.tunings.indexOf(orebViewModel.guitar.tuning))
+        tuningSpinner.setSelection(orebViewModel.tunings.indexOf(orebViewModel.guitar.tuning))
 
         // wire up the magnification setting spinner
         val magnificationSpinner = fretboardLayout.findViewById(R.id.magnification_spinner) as Spinner
@@ -77,6 +87,7 @@ class FretboardFragment : Fragment(), AdapterView.OnItemSelectedListener, AnkoLo
 
     override fun onItemSelected(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
         when (parent.id) {
+            R.id.capo_spinner -> consumeSpinnerEvent { capoSpinnerItemSelected(parent.getItemAtPosition(pos) as CharSequence) }
             R.id.tuning_spinner -> consumeSpinnerEvent { tuningSpinnerItemSelected(parent.getItemAtPosition(pos) as CharSequence) }
             R.id.magnification_spinner -> consumeSpinnerEvent { magnificationSpinnerItemSelected(parent.getItemAtPosition(pos) as CharSequence) }
         }
@@ -89,6 +100,13 @@ class FretboardFragment : Fragment(), AdapterView.OnItemSelectedListener, AnkoLo
 
     override fun onNothingSelected(p0: AdapterView<*>?) {
         // TODO
+    }
+
+    private fun capoSpinnerItemSelected(capoName: CharSequence) {
+        val newCapo = this.orebViewModel.capos.find { it.name == capoName }!!
+        val guitarWithNewCapo = this.orebViewModel.guitar.copy(capo = newCapo)
+        orebViewModel.guitar = guitarWithNewCapo
+        fretboardView.invalidate()
     }
 
     private fun tuningSpinnerItemSelected(tuningName: CharSequence) {
