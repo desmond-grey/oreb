@@ -23,15 +23,9 @@ import kotlin.math.min
 class FretboardView : View, AnkoLogger {
     private var orebViewModel: OrebViewModel
 
-    // Reasonable initial values for Larrivee on Galaxy Tab S2, wide orientation
-    private val DRAW_SCALE_MIN = 75f
-    private val DRAW_SCALE_MAX = 250f
-
     private val scaleGestureDetector: ScaleGestureDetector
     private val dragGestureDetector: GestureDetector
     private var isScaling = false            // scale and drag see the same events.  isScaling boolean allows us to avoid dragging while scaling
-
-    private var currentDrawScale: Float = DRAW_SCALE_MIN       // Driven by pinch/zoom scaling.  Start zoomed out.
 
     constructor(context: Context) : this(context, null)
     constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
@@ -61,9 +55,9 @@ class FretboardView : View, AnkoLogger {
         override fun onScale(scaleGestureDetector: ScaleGestureDetector): Boolean {
             val scaleFactor = scaleGestureDetector.scaleFactor
 
-            currentDrawScale = currentDrawScale * scaleFactor
-            currentDrawScale = min(currentDrawScale, DRAW_SCALE_MAX)  // largest we can scale
-            currentDrawScale = max(currentDrawScale, DRAW_SCALE_MIN)  // smallest we can scale
+            orebViewModel.drawScale = orebViewModel.drawScale * scaleFactor
+            orebViewModel.drawScale = min(orebViewModel.drawScale, orebViewModel.DRAW_SCALE_MAX)  // largest we can scale
+            orebViewModel.drawScale = max(orebViewModel.drawScale, orebViewModel.DRAW_SCALE_MIN)  // smallest we can scale
 
             invalidate()
 
@@ -95,16 +89,17 @@ class FretboardView : View, AnkoLogger {
 
         canvas.save()
 
-        drawFretboard(canvas, currentDrawScale, guitar.fretboard)
-        drawSideFretMarkers(canvas, currentDrawScale, guitar.fretboard)
-        drawNut(canvas, currentDrawScale, guitar.nut)
-        drawSaddle(canvas, currentDrawScale, guitar.saddle)
-        drawFrets(canvas, currentDrawScale, guitar.fretboard.frets)
-        drawStrings(canvas, currentDrawScale, guitar.strings)
+        val drawScale = orebViewModel.drawScale
+        drawFretboard(canvas, drawScale, guitar.fretboard)
+        drawSideFretMarkers(canvas, drawScale, guitar.fretboard)
+        drawNut(canvas, drawScale, guitar.nut)
+        drawSaddle(canvas, drawScale, guitar.saddle)
+        drawFrets(canvas, drawScale, guitar.fretboard.frets)
+        drawStrings(canvas, drawScale, guitar.strings)
 
         drawGuidanceNotes(
                 canvas,
-                currentDrawScale,
+                drawScale,
                 guitar,
                 orebViewModel.key,
                 orebViewModel.scale
