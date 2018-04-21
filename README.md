@@ -1,14 +1,11 @@
 To Do
 -----
-. wire-up magnification spinner.  Set default zoom to fit-to-width.
 . guidance: key spinner
 . guidance: scale spinner
 . fretboard: implement capo'ing (spinner, etc.)
 . fretboard: handle note selection
 
 . implement drag/panning (framework code is already in place)
-. default scaling should be fit-to-width (fit fretboard length, not entire scale length)
-. implement cross-fragment communication for the spinners
 . info: handle info fragment
 . selector: implement selector fragment
 . chords: implement chords fragment
