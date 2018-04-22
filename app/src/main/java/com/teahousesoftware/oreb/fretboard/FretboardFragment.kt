@@ -1,5 +1,6 @@
 package com.teahousesoftware.oreb.fretboard
 
+import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -9,7 +10,6 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
-import com.teahousesoftware.oreb.OrebActivity
 import com.teahousesoftware.oreb.OrebViewModel
 import com.teahousesoftware.oreb.R
 import com.teahousesoftware.oreb.shared.model.guitar.Guitar
@@ -83,6 +83,10 @@ class FretboardFragment : Fragment(), AdapterView.OnItemSelectedListener, AnkoLo
         magnificationSpinner.adapter = magnificationSpinnerAdapter
         magnificationSpinner.setOnItemSelectedListener(this)
         magnificationSpinner.setSelection(DEFAULT_MAGNIFICATION.ordinal)
+
+        // respond to changes in guidance:key and guidance:scale spinners
+        orebViewModel.key.observe(this, Observer { fretboardView.invalidate() })
+        orebViewModel.scale.observe(this, Observer { fretboardView.invalidate() })
 
         return fretboardLayout
     }

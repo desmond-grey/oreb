@@ -1,5 +1,6 @@
 package com.teahousesoftware.oreb
 
+import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import com.teahousesoftware.oreb.shared.model.guitar.Capo
 import com.teahousesoftware.oreb.shared.model.guitar.Guitar
@@ -18,8 +19,9 @@ class OrebViewModel() : ViewModel() {
     lateinit var scales:List<Scale>
 
     lateinit var guitar:Guitar
-    lateinit var key:TheoreticalNote
-    lateinit var scale:Scale
+
+    val key = MutableLiveData<TheoreticalNote>()
+    val scale = MutableLiveData<Scale>()
 
     var drawScale: Float = DRAW_SCALE_MIN   // Driven by pinch/zoom scaling.  Start zoomed out.
 }

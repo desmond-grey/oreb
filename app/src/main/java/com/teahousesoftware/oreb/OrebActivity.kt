@@ -34,8 +34,8 @@ class OrebActivity : AppCompatActivity(), AnkoLogger {
         orebViewModel.guitar = buildAndTuneLarrivee(
                 tunings.find { it.name == "Standard" }!!,
                 capos.find { it.name == "None" }!!)
-        orebViewModel.key = TheoreticalNote.C
-        orebViewModel.scale = loadScalesFromAssets().find { it.name == "Major" }!!
+        orebViewModel.key.value = TheoreticalNote.C     // TODO: better default handling for these two
+        orebViewModel.scale.value = loadScalesFromAssets().find { it.name == "Major" }!!
 
         // load the fretboard fragment
         if (savedInstanceState == null) {

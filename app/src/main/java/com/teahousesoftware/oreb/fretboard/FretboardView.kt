@@ -102,8 +102,8 @@ class FretboardView : View, AnkoLogger {
                 canvas,
                 drawScale,
                 guitar,
-                orebViewModel.key,
-                orebViewModel.scale
+                orebViewModel.key.value!!,
+                orebViewModel.scale.value!!
         )
 
         canvas.restore()

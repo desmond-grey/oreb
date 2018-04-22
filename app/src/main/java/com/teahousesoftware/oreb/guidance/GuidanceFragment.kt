@@ -89,12 +89,10 @@ class GuidanceFragment : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     private fun keySpinnerItemSelected(keyName: CharSequence) {
-        val newKey = TheoreticalNote.values().find { it.descriptiveName == keyName }!!
-        // TODO: update viewModel 
+        orebViewModel.key.value = TheoreticalNote.values().find { it.descriptiveName == keyName }!!
     }
 
     private fun scaleSpinnerItemSelected(scaleName: CharSequence) {
-        val newScale = this.orebViewModel.scales.find { it.name == scaleName }!!
-        // TODO: update viewModel 
+        orebViewModel.scale.value = orebViewModel.scales.find { it.name == scaleName }!!
     }
 }
