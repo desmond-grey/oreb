@@ -17,6 +17,8 @@ import org.jetbrains.anko.AnkoLogger
 
 // Fragments must have an empty public constructor
 class FretboardFragment : Fragment(), AdapterView.OnItemSelectedListener, AnkoLogger {
+    val DEFAULT_MAGNIFICATION = MAGNIFICATIONS.FIT_TO_FRETBOARD_LENGTH
+
     private lateinit var orebViewModel: OrebViewModel
     private lateinit var fretboardView: FretboardView
 
@@ -68,7 +70,7 @@ class FretboardFragment : Fragment(), AdapterView.OnItemSelectedListener, AnkoLo
         tuningSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         tuningSpinner.adapter = tuningSpinnerAdapter
         tuningSpinner.setOnItemSelectedListener(this)
-        tuningSpinner.setSelection(orebViewModel.tunings.indexOf(orebViewModel.guitar.tuning))
+        tuningSpinner.setSelection(orebViewModel.tunings.indexOf(orebViewModel.guitar.tuning))  // guitars have tunings.  this syncs up the spinner with what the guitar was built with
 
         // wire up the magnification setting spinner
         val magnificationSpinner = fretboardLayout.findViewById(R.id.magnification_spinner) as Spinner
@@ -80,7 +82,7 @@ class FretboardFragment : Fragment(), AdapterView.OnItemSelectedListener, AnkoLo
         magnificationSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         magnificationSpinner.adapter = magnificationSpinnerAdapter
         magnificationSpinner.setOnItemSelectedListener(this)
-        magnificationSpinner.setSelection(MAGNIFICATIONS.FIT_TO_FRETBOARD_LENGTH.ordinal)
+        magnificationSpinner.setSelection(DEFAULT_MAGNIFICATION.ordinal)
 
         return fretboardLayout
     }
