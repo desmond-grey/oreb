@@ -11,7 +11,7 @@
     android:textAlignment="textEnd">
 
     <TextView
-        android:id="@+id/keySpinnerLabel"
+        android:id="@+id/key_spinner_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -22,18 +22,18 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
-        android:id="@+id/keySpinner"
+        android:id="@+id/key_spinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/keySpinnerLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/key_spinner_label"
         app:layout_constraintStart_toEndOf="@+id/barrier4"
-        app:layout_constraintTop_toTopOf="@+id/keySpinnerLabel" />
+        app:layout_constraintTop_toTopOf="@+id/key_spinner_label" />
 
     <TextView
-        android:id="@+id/scaleSpinnerLabel"
+        android:id="@+id/scale_spinner_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -43,25 +43,25 @@
         android:textIsSelectable="false"
         app:layout_constraintEnd_toEndOf="@+id/barrier4"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/keySpinnerLabel" />
+        app:layout_constraintTop_toBottomOf="@+id/key_spinner_label" />
 
     <Spinner
-        android:id="@+id/scaleSpinner"
+        android:id="@+id/scale_spinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/scaleSpinnerLabel"
+        app:layout_constraintBottom_toBottomOf="@+id/scale_spinner_label"
         app:layout_constraintStart_toEndOf="@+id/barrier4"
-        app:layout_constraintTop_toTopOf="@+id/scaleSpinnerLabel" />
+        app:layout_constraintTop_toTopOf="@+id/scale_spinner_label" />
 
     <android.support.constraint.Barrier
         android:id="@+id/barrier4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="end"
-        app:constraint_referenced_ids="scaleSpinnerLabel,keySpinnerLabel"
+        app:constraint_referenced_ids="scale_spinner_label,key_spinner_label"
         app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
