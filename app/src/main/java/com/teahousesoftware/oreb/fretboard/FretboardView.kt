@@ -162,9 +162,98 @@ class FretboardView : View, AnkoLogger {
         }
     }
 
-    @Suppress("UNUSED_PARAMETER")
     private fun drawCapo(canvas: Canvas, drawScale: Float, guitar: Guitar) {
-        // TODO
+        if (guitar.capo.name == "None") return
+
+        for (stringNum in guitar.capo.stringNumFretNum.keys) {
+            val fretNum = guitar.capo.stringNumFretNum[stringNum]
+
+            val guitarString = orebViewModel
+                    .guitar
+                    .strings
+                    .find { it.stringNumber == stringNum }!!
+
+            val fret = orebViewModel
+                    .guitar
+                    .fretboard
+                    .frets
+                    .find { it.fretNumber == fretNum }!!
+
+            val left: Float
+            val top: Float
+            val right: Float
+            val bottom: Float
+
+            // calc left and right
+            when {
+                fret.fretNumber == 0 -> {  // does not get drawn, but we set the vars to keep the compiler happy
+                    left = 0f
+                    right = left + Capo.CAPO_WIDTH
+                }
+
+                fret.fretNumber == 1 -> {
+                    val center = fret.distanceFromNut / 2
+                    left = center - (Capo.CAPO_WIDTH / 2)
+                    right = center + (Capo.CAPO_WIDTH / 2)
+                }
+
+                else -> {
+                    val previousFret = guitar.fretboard.frets.find { it.fretNumber == fret.fretNumber - 1 }!!
+                    val distanceBetweenPreviousAndThis = fret.distanceFromNut - previousFret.distanceFromNut
+                    val center = fret.distanceFromNut - (distanceBetweenPreviousAndThis / 2)
+                    left = center - (Capo.CAPO_WIDTH / 2)
+                    right = center + (Capo.CAPO_WIDTH / 2)
+                }
+            }
+
+            // calc top and bottom
+            when {
+                guitarString.stringNumber == 1 -> {
+                    val adjacentStringAfter: GuitarString = guitar
+                            .strings
+                            .find { it.stringNumber == 2 }!!
+                    top = 0f
+                    bottom = guitarString.yPosition + ((adjacentStringAfter.yPosition - guitarString.yPosition) / 2)
+                }
+
+                // string 6 on a 6-string instrument
+                guitarString.stringNumber == guitar.strings.last().stringNumber -> {
+                    val stringBefore: GuitarString = guitar
+                            .strings
+                            .find { it.stringNumber == guitarString.stringNumber - 1 }!!
+                    top = (stringBefore.yPosition + guitarString.yPosition) / 2
+                    bottom = guitar.fretboard.heightAtNut
+                }
+
+                else -> {
+                    val adjacentStringBefore: GuitarString = guitar
+                            .strings
+                            .find { it.stringNumber == guitarString.stringNumber - 1 }!!
+                    val adjacentStringAfter: GuitarString = guitar
+                            .strings
+                            .find { it.stringNumber == guitarString.stringNumber + 1 }!!
+                    top = (adjacentStringBefore.yPosition + guitarString.yPosition) / 2
+                    bottom = (adjacentStringAfter.yPosition + guitarString.yPosition) / 2
+                }
+            }
+
+            if (fret.fretNumber > 0) {
+                canvas.drawRect(
+                        left * drawScale,
+                        top * drawScale,
+                        right * drawScale,
+                        bottom * drawScale,
+                        ebonyFill()
+                )
+                canvas.drawRect(
+                        left * drawScale,
+                        top * drawScale,
+                        right * drawScale,
+                        bottom * drawScale,
+                        blackStrokeOnePixel()
+                )
+            }
+        }
     }
 
     private fun drawGuidanceNotes(

@@ -120,6 +120,15 @@ fun transparentEbonyFill(): Paint {
     return ebonyFill
 }
 
+fun ebonyFill(): Paint {
+    val ebonyFill = Paint()
+    ebonyFill.isAntiAlias = true
+    ebonyFill.setARGB( 128, 85, 93, 80)
+    ebonyFill.style = Paint.Style.FILL
+
+    return ebonyFill
+}
+
 fun whiteFill(): Paint {
     val whiteFill = Paint()
     whiteFill.isAntiAlias = true

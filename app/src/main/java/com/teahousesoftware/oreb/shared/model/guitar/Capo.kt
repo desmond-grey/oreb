@@ -5,13 +5,15 @@ import org.json.JSONObject
 
 class Capo(
         val name: String,
-        val stringFret: Map<Int, Int>) : AnkoLogger {
+        val stringNumFretNum: Map<Int, Int>) : AnkoLogger {
 
     fun getCapodFretForString(stringNumber: Int): Int {
-        return stringFret[stringNumber]!!
+        return stringNumFretNum[stringNumber]!!
     }
 
     companion object {
+        const val CAPO_WIDTH = .125f
+
         fun deserialize(caposJsonString: String): Capo {
             val capoJo = JSONObject(caposJsonString)
             val capoName = capoJo.getString("name")
