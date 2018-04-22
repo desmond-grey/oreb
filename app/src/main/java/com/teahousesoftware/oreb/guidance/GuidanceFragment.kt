@@ -12,6 +12,17 @@ class GuidanceFragment : Fragment() {
     private var pageNum: Int = 0
     private var title: String? = null
 
+    companion object {
+        fun newInstance(page: Int, title: String): GuidanceFragment {
+            val guidanceFragment = GuidanceFragment()
+            val args = Bundle()
+            args.putInt("pageNum", page)
+            args.putString("title", title)
+            guidanceFragment.arguments = args
+            return guidanceFragment
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         pageNum = arguments.getInt("pageNum", 0)
@@ -24,14 +35,4 @@ class GuidanceFragment : Fragment() {
         return view
     }
 
-    companion object {
-        fun newInstance(page: Int, title: String): GuidanceFragment {
-            val chordsFragment = GuidanceFragment()
-            val args = Bundle()
-            args.putInt("pageNum", page)
-            args.putString("title", title)
-            chordsFragment.arguments = args
-            return chordsFragment
-        }
-    }
 }
