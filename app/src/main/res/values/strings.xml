@@ -7,6 +7,9 @@
     <string name="scale">Scale:</string>
     <string name="key">Key:</string>
 
-    <string name="left_control_pane_desc">temporary left control pane</string>
+    <string name="guidance_fragment_page_title">Guidance</string>
+    <string name="info_fragment_page_title">Info</string>
+
     <string name="action_settings">Settings</string>
+    <string name="left_control_pane_desc">temporary left control pane</string>
 </resources>

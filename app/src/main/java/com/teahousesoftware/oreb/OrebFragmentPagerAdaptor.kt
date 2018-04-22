@@ -7,7 +7,12 @@ import com.teahousesoftware.oreb.guidance.GuidanceFragment
 import com.teahousesoftware.oreb.info.InfoFragment
 
 // NOTE: FragmentPagerAdapter requires "support v4" compat fragments
-class OrebFragmentPagerAdaptor(fragmentManager: FragmentManager) : FragmentPagerAdapter(fragmentManager) {
+class OrebFragmentPagerAdaptor(
+        fragmentManager: FragmentManager,
+        val orebActivity: OrebActivity) : FragmentPagerAdapter(fragmentManager) {
+    companion object {
+        private val NUM_ITEMS = 2
+    }
 
     override fun getCount(): Int {
         return NUM_ITEMS
@@ -15,22 +20,25 @@ class OrebFragmentPagerAdaptor(fragmentManager: FragmentManager) : FragmentPager
 
     override fun getItem(position: Int): Fragment? {
         when (position) {
-            0 -> return InfoFragment.newInstance(0, "Info")
-            1 -> return GuidanceFragment.newInstance(1, "Guidance")
+            0 -> return GuidanceFragment.newInstance(
+                    0,
+                    orebActivity.getString(R.string.guidance_fragment_page_title)
+            )
+            1 -> return InfoFragment.newInstance(
+                    1,
+                    orebActivity.getString(R.string.info_fragment_page_title)
+            )
             else -> return null
         }
     }
 
-    // TODO: improve how we return titles, should retrieve from fragment (it's stored in it as an args bundle)
     override fun getPageTitle(position: Int): CharSequence {
+        // TODO: don't hardcode.  Pull the title from the fragement
         when (position) {
-            0 -> return "Info"
-            1 -> return "Guidance"
+            0 -> return orebActivity.getString(R.string.guidance_fragment_page_title)
+            1 -> return orebActivity.getString(R.string.info_fragment_page_title)
             else -> return ""
         }
     }
 
-    companion object {
-        private val NUM_ITEMS = 2
-    }
 }

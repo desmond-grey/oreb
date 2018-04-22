@@ -48,7 +48,7 @@ class OrebActivity : AppCompatActivity(), AnkoLogger {
 
         // wire up the view pager
         val viewPager = findViewById(R.id.viewPager) as ViewPager
-        orebFragmentPagerAdaptor = OrebFragmentPagerAdaptor(supportFragmentManager)
+        orebFragmentPagerAdaptor = OrebFragmentPagerAdaptor(supportFragmentManager, this)
         viewPager.adapter = orebFragmentPagerAdaptor
     }
 
