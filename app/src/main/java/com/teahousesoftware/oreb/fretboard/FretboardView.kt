@@ -117,6 +117,7 @@ class FretboardView : View, AnkoLogger {
     private fun drawSideFretMarkers(canvas: Canvas, scale: Float, fretboard: Fretboard) {
         val offsetFromBottomOfFretboard = .25f
 
+        // TODO: I think the fret-markers should be a property of the guitar
         val fretsWithMarkers = ArrayList<Fret>()
         fretsWithMarkers.add(fretboard.frets[3])
         fretsWithMarkers.add(fretboard.frets[5])
