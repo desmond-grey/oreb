@@ -20,7 +20,6 @@ class OrebActivity : AppCompatActivity(), AnkoLogger {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_oreb)
 
-
         // setup the view model
         orebViewModel = ViewModelProviders.of(this).get(OrebViewModel::class.java)
 
