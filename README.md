@@ -1,16 +1,12 @@
 To Do
 -----
-. guidance: key spinner
-. guidance: scale spinner
-. fretboard: implement capo'ing (spinner, etc.)
 . fretboard: handle note selection
-
 . implement drag/panning (framework code is already in place)
+
 . info: handle info fragment
 . selector: implement selector fragment
 . chords: implement chords fragment
 . implement transport controls and timeline
-
 
 Guitar Measurements
 -------------------
