@@ -90,6 +90,7 @@ class FretboardView : View, AnkoLogger {
         canvas.save()
 
         val drawScale = orebViewModel.drawScale
+        canvas.translate(.25f * drawScale, 0f)      // if we don't do this, drawing at the nut gets clipped
         drawFretboard(canvas, drawScale, guitar.fretboard)
         drawSideFretMarkers(canvas, drawScale, guitar.fretboard)
         drawNut(canvas, drawScale, guitar.nut)
