@@ -8,7 +8,7 @@ import com.teahousesoftware.oreb.shared.model.music.Scale
 import com.teahousesoftware.oreb.shared.model.music.TheoreticalNote
 import com.teahousesoftware.oreb.shared.model.music.Tuning
 
-class OrebViewModel() : ViewModel() {
+class OrebViewModel : ViewModel() {
     // Reasonable initial values for Larrivee on Galaxy Tab S2, wide orientation
     // TODO: see measurements in the README
     val DRAW_SCALE_MIN = 75f
