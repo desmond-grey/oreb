@@ -3,7 +3,7 @@ package com.teahousesoftware.oreb.shared.model.guitar
 import com.teahousesoftware.oreb.shared.model.music.Tuning
 import java.util.ArrayList
 
-private val FRET_CALCULATION_CONSTANT = 17.817f
+private const val FRET_CALCULATION_CONSTANT = 17.817f
 
 fun generateStrings(nut: Nut, saddle: Saddle): List<GuitarString> {
     val numberOfGroovesInNut = nut.grooves.size
