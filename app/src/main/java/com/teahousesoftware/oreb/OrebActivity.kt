@@ -1,10 +1,12 @@
 package com.teahousesoftware.oreb
 
+import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import com.teahousesoftware.oreb.fretboard.FretboardFragment
+import com.teahousesoftware.oreb.selector.SelectorView
 import com.teahousesoftware.oreb.shared.model.guitar.Capo
 import com.teahousesoftware.oreb.shared.model.guitar.buildAndTuneLarrivee
 import com.teahousesoftware.oreb.shared.model.music.Scale
@@ -49,6 +51,11 @@ class OrebActivity : AppCompatActivity(), AnkoLogger {
         val viewPager = findViewById(R.id.viewPager) as ViewPager
         orebFragmentPagerAdaptor = OrebFragmentPagerAdaptor(supportFragmentManager, this)
         viewPager.adapter = orebFragmentPagerAdaptor
+
+        // the selector view is instantiated by the layout, but it needs us to do the observing for it
+        val selectorView = findViewById(R.id.selector_view) as SelectorView
+        orebViewModel.key.observe(this, Observer { selectorView.invalidate() })
+        orebViewModel.scale.observe(this, Observer { selectorView.invalidate() })
     }
 
     // ----- private

@@ -22,7 +22,6 @@ class SelectorView : View, AnkoLogger {
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {}
 
     init {
-        // todo: we want to setup observing.  probably not in the view.
         orebViewModel = ViewModelProviders.of((context as OrebActivity)).get(OrebViewModel::class.java)
     }
 
@@ -34,12 +33,12 @@ class SelectorView : View, AnkoLogger {
 
         val tonic = orebViewModel.key.value!!
         val diatonicScale = orebViewModel.scale.value!!
-        val diatonicKey = Key(tonic, diatonicScale)  // todo: don't do this in the draw method
+        val diatonicKey = Key(tonic, diatonicScale)
 
         val chromaticScale = orebViewModel.scales.find { it.name == "Chromatic" }!!
-        val chromaticKey = Key(diatonicKey.tonic, chromaticScale)      // todo: don't do this in the draw method
+        val chromaticKey = Key(diatonicKey.tonic, chromaticScale)   // todo: this should probably just be in the viewModel
 
-        val canvasOriginTranslator = CanvasOriginTranslator(width, height)      // todo: don't do this in the draw method
+        val canvasOriginTranslator = CanvasOriginTranslator(width, height)      // todo: init this earlier in the lifecycle
 
         canvas.save()
 
