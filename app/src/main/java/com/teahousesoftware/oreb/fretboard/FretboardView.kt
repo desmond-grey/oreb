@@ -265,7 +265,7 @@ class FretboardView : View, AnkoLogger {
             key: TheoreticalNote,
             scale: Scale) {
         val scaleNotes = scale.generateNotesForKey(key)
-        val chromaticScaleNotes = orebViewModel.scales.find { it.name == "Chromatic Scale" }!!.generateNotesForKey(key)
+        val chromaticScaleNotes = orebViewModel.scales.find { it.name == "Chromatic" }!!.generateNotesForKey(key)
 
         for (string in guitar.strings) {
             val yPosition = string.yPosition
@@ -278,18 +278,18 @@ class FretboardView : View, AnkoLogger {
                     var fillColor = whiteFill()    // default fill
                     val noteNumber = chromaticScaleNotes.indexOf(frettedNote.theoreticalNote)
                     when (noteNumber) {
-                        0 -> fillColor = firstNoteFillColor()
-                        1 -> fillColor = secondNoteFillColor()
-                        2 -> fillColor = thirdNoteFillColor()
-                        3 -> fillColor = fourthNoteFillColor()
-                        4 -> fillColor = fifthNoteFillColor()
-                        5 -> fillColor = sixthNoteFillColor()
-                        6 -> fillColor = seventhNoteFillColor()
-                        7 -> fillColor = eighthNoteFillColor()
-                        8 -> fillColor = ninthNoteFillColor()
-                        9 -> fillColor = tenthNoteFillColor()
-                        10 -> fillColor = eleventhNoteFillColor()
-                        11 -> fillColor = twelfthNoteFillColor()
+                        0 -> fillColor = chromaticFirstNoteFillColor()
+                        1 -> fillColor = chromaticSecondNoteFillColor()
+                        2 -> fillColor = chromaticThirdNoteFillColor()
+                        3 -> fillColor = chromaticFourthNoteFillColor()
+                        4 -> fillColor = chromaticFifthNoteFillColor()
+                        5 -> fillColor = chromaticSixthNoteFillColor()
+                        6 -> fillColor = chromaticSeventhNoteFillColor()
+                        7 -> fillColor = chromaticEighthNoteFillColor()
+                        8 -> fillColor = chromaticNinthNoteFillColor()
+                        9 -> fillColor = chromaticTenthNoteFillColor()
+                        10 -> fillColor = chromaticEleventhNoteFillColor()
+                        11 -> fillColor = chromaticTwelfthNoteFillColor()
                         else -> {
                             whiteFill()
                         }

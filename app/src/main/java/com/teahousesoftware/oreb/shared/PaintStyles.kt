@@ -3,7 +3,7 @@ package com.teahousesoftware.oreb.shared
 import android.graphics.Color
 import android.graphics.Paint
 
-fun firstNoteFillColor(): Paint {
+fun chromaticFirstNoteFillColor(): Paint {
     val rootNoteFillColor = Paint()
     rootNoteFillColor.isAntiAlias = true
     rootNoteFillColor.setARGB(255, 128, 192, 255)
@@ -12,7 +12,7 @@ fun firstNoteFillColor(): Paint {
 
 }
 
-fun secondNoteFillColor(): Paint {
+fun chromaticSecondNoteFillColor(): Paint {
     val rootNoteFillColor = Paint()
     rootNoteFillColor.isAntiAlias = true
     rootNoteFillColor.setARGB(255, 128, 192, 128)
@@ -21,7 +21,7 @@ fun secondNoteFillColor(): Paint {
 
 }
 
-fun thirdNoteFillColor(): Paint {
+fun chromaticThirdNoteFillColor(): Paint {
     val rootNoteFillColor = Paint()
     rootNoteFillColor.isAntiAlias = true
     rootNoteFillColor.setARGB(255, 192, 224, 128)
@@ -30,7 +30,7 @@ fun thirdNoteFillColor(): Paint {
 
 }
 
-fun fourthNoteFillColor(): Paint {
+fun chromaticFourthNoteFillColor(): Paint {
     val rootNoteFillColor = Paint()
     rootNoteFillColor.isAntiAlias = true
     rootNoteFillColor.setARGB(255, 255, 255, 128)
@@ -39,7 +39,7 @@ fun fourthNoteFillColor(): Paint {
 
 }
 
-fun fifthNoteFillColor(): Paint {
+fun chromaticFifthNoteFillColor(): Paint {
     val rootNoteFillColor = Paint()
     rootNoteFillColor.isAntiAlias = true
     rootNoteFillColor.setARGB(255, 255, 223, 128)
@@ -48,7 +48,7 @@ fun fifthNoteFillColor(): Paint {
 
 }
 
-fun sixthNoteFillColor(): Paint {
+fun chromaticSixthNoteFillColor(): Paint {
     val rootNoteFillColor = Paint()
     rootNoteFillColor.isAntiAlias = true
     rootNoteFillColor.setARGB(255, 255, 192, 128)
@@ -57,7 +57,7 @@ fun sixthNoteFillColor(): Paint {
 
 }
 
-fun seventhNoteFillColor(): Paint {
+fun chromaticSeventhNoteFillColor(): Paint {
     val rootNoteFillColor = Paint()
     rootNoteFillColor.isAntiAlias = true
     rootNoteFillColor.setARGB(255, 255, 160, 128)
@@ -66,7 +66,7 @@ fun seventhNoteFillColor(): Paint {
 
 }
 
-fun eighthNoteFillColor(): Paint {
+fun chromaticEighthNoteFillColor(): Paint {
     val rootNoteFillColor = Paint()
     rootNoteFillColor.isAntiAlias = true
     rootNoteFillColor.setARGB(255, 255, 128, 128)
@@ -75,7 +75,7 @@ fun eighthNoteFillColor(): Paint {
 
 }
 
-fun ninthNoteFillColor(): Paint {
+fun chromaticNinthNoteFillColor(): Paint {
     val rootNoteFillColor = Paint()
     rootNoteFillColor.isAntiAlias = true
     rootNoteFillColor.setARGB(255, 223, 128, 160)
@@ -84,7 +84,7 @@ fun ninthNoteFillColor(): Paint {
 
 }
 
-fun tenthNoteFillColor(): Paint {
+fun chromaticTenthNoteFillColor(): Paint {
     val rootNoteFillColor = Paint()
     rootNoteFillColor.isAntiAlias = true
     rootNoteFillColor.setARGB(255, 192, 128, 192)
@@ -93,7 +93,7 @@ fun tenthNoteFillColor(): Paint {
 
 }
 
-fun eleventhNoteFillColor(): Paint {
+fun chromaticEleventhNoteFillColor(): Paint {
     val rootNoteFillColor = Paint()
     rootNoteFillColor.isAntiAlias = true
     rootNoteFillColor.setARGB(255, 160, 128, 223)
@@ -102,7 +102,7 @@ fun eleventhNoteFillColor(): Paint {
 
 }
 
-fun twelfthNoteFillColor(): Paint {
+fun chromaticTwelfthNoteFillColor(): Paint {
     val rootNoteFillColor = Paint()
     rootNoteFillColor.isAntiAlias = true
     rootNoteFillColor.setARGB(255, 128, 128, 255)
@@ -138,6 +138,24 @@ fun whiteFill(): Paint {
     return whiteFill
 }
 
+fun greyFill(): Paint {
+    val greyFill = Paint()
+    greyFill.isAntiAlias = true
+    greyFill.color = Color.GRAY
+    greyFill.style = Paint.Style.FILL
+
+    return greyFill
+}
+
+fun ltGreyFill(): Paint {
+    val ltGreyFill = Paint()
+    ltGreyFill.isAntiAlias = true
+    ltGreyFill.color = Color.LTGRAY
+    ltGreyFill.style = Paint.Style.FILL
+
+    return ltGreyFill
+}
+
 fun blackFill(): Paint {
     val blackFill = Paint()
     blackFill.isAntiAlias = true
@@ -155,6 +173,26 @@ fun blackStrokeOnePixel(): Paint {
     blackStrokeOnePixel.style = Paint.Style.STROKE
 
     return blackStrokeOnePixel
+}
+
+fun greyStrokeOnePixel(): Paint {
+    val greyStrokeOnePixel = Paint()
+    greyStrokeOnePixel.isAntiAlias = true
+    greyStrokeOnePixel.strokeWidth = 1f
+    greyStrokeOnePixel.color = Color.GRAY
+    greyStrokeOnePixel.style = Paint.Style.STROKE
+
+    return greyStrokeOnePixel
+}
+
+fun ltGreyStrokeOnePixel(): Paint {
+    val ltGreyStrokeOnePixel = Paint()
+    ltGreyStrokeOnePixel.isAntiAlias = true
+    ltGreyStrokeOnePixel.strokeWidth = 1f
+    ltGreyStrokeOnePixel.color = Color.LTGRAY
+    ltGreyStrokeOnePixel.style = Paint.Style.STROKE
+
+    return ltGreyStrokeOnePixel
 }
 
 fun blackStrokeTwoPixels(): Paint {
@@ -185,4 +223,43 @@ fun blackStrokeFourPixels(): Paint {
     blackStrokeFourPixels.style = Paint.Style.STROKE
 
     return blackStrokeFourPixels
+}
+
+fun fillColorForChromaticScaleNoteNumber(noteNumber: Int): Paint {
+    var fillColor = whiteFill()
+    when (noteNumber) {     // 1-12     todo: make 1-based counting
+        1 -> fillColor = chromaticFirstNoteFillColor()
+        2 -> fillColor = chromaticSecondNoteFillColor()
+        3 -> fillColor = chromaticThirdNoteFillColor()
+        4 -> fillColor = chromaticFourthNoteFillColor()
+        5 -> fillColor = chromaticFifthNoteFillColor()
+        6 -> fillColor = chromaticSixthNoteFillColor()
+        7 -> fillColor = chromaticSeventhNoteFillColor()
+        8 -> fillColor = chromaticEighthNoteFillColor()
+        9 -> fillColor = chromaticNinthNoteFillColor()
+        10 -> fillColor = chromaticTenthNoteFillColor()
+        11 -> fillColor = chromaticEleventhNoteFillColor()
+        12 -> fillColor = chromaticTwelfthNoteFillColor()
+        else -> {
+            whiteFill()
+        }
+    }
+    return fillColor
+}
+
+fun fillColorForNoteNumber(noteNumber: Int): Paint {    // 1-8
+    var fillColor = whiteFill()
+    when (noteNumber) {
+        1 -> fillColor = chromaticFirstNoteFillColor()
+        2 -> fillColor = chromaticThirdNoteFillColor()
+        3 -> fillColor = chromaticFifthNoteFillColor()
+        4 -> fillColor = chromaticSixthNoteFillColor()
+        5 -> fillColor = chromaticEighthNoteFillColor()
+        6 -> fillColor = chromaticTenthNoteFillColor()
+        7 -> fillColor = chromaticTwelfthNoteFillColor()
+        else -> {
+            whiteFill()
+        }
+    }
+    return fillColor
 }

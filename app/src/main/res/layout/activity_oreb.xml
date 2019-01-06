@@ -34,7 +34,7 @@
                 android:layout_height="fill_parent"
                 android:layout_weight="1">
 
-                <ImageView
+                <FrameLayout
                     android:id="@+id/left_control_pane"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -47,7 +47,13 @@
                     android:layout_weight="1"
                     android:contentDescription="@string/left_control_pane_desc"
 
-                    app:srcCompat="@android:color/holo_blue_dark" />
+                    android:padding="5dp">
+
+                    <com.teahousesoftware.oreb.selector.SelectorView
+                        android:id="@+id/selector_view"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent" />
+                </FrameLayout>
             </LinearLayout>
 
             <LinearLayout
