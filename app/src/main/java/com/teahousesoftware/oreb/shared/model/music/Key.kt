@@ -15,6 +15,10 @@ class Key(val tonic:TheoreticalNote, val scale: Scale) : AnkoLogger {
             -1
         }
     }
+
+    fun noteIsInKey(note: TheoreticalNote): Boolean {
+        return notes.contains(note)
+    }
 }
 
 private fun generateNotes(tonic: TheoreticalNote, scale: Scale): List<TheoreticalNote> {

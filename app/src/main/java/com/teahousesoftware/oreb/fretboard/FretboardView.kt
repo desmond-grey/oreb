@@ -13,8 +13,7 @@ import android.view.MotionEvent
 import com.teahousesoftware.oreb.OrebActivity
 import com.teahousesoftware.oreb.OrebViewModel
 import com.teahousesoftware.oreb.shared.*
-import com.teahousesoftware.oreb.shared.model.music.TheoreticalNote
-import com.teahousesoftware.oreb.shared.model.music.Scale
+import com.teahousesoftware.oreb.shared.model.music.Key
 import org.jetbrains.anko.AnkoLogger
 import kotlin.math.max
 import kotlin.math.min
@@ -99,12 +98,18 @@ class FretboardView : View, AnkoLogger {
         drawStrings(canvas, drawScale, guitar.strings)
         drawCapo(canvas, drawScale, guitar)
 
+        val tonicNote = orebViewModel.key.value!!
+        val diatonicScale = orebViewModel.scale.value!!
+        val diatonicKey = Key(tonicNote, diatonicScale)
+        val chromaticScale = orebViewModel.scales.find { it.name == "Chromatic" }!!
+        val chromaticKey = Key(diatonicKey.tonic, chromaticScale)   // todo: this should probably just be in the viewModel
+
         drawGuidanceNotes(
                 canvas,
                 drawScale,
                 guitar,
-                orebViewModel.key.value!!,
-                orebViewModel.scale.value!!
+                diatonicKey,
+                chromaticKey
         )
 
         canvas.restore()
@@ -262,38 +267,19 @@ class FretboardView : View, AnkoLogger {
             canvas: Canvas,
             drawScale: Float,
             guitar: Guitar,
-            key: TheoreticalNote,
-            scale: Scale) {
-        val scaleNotes = scale.generateNotesForKey(key)
-        val chromaticScaleNotes = orebViewModel.scales.find { it.name == "Chromatic" }!!.generateNotesForKey(key)
+            diatonicKey: Key,
+            chromaticKey: Key) {
 
         for (string in guitar.strings) {
             val yPosition = string.yPosition
 
             for (fret in guitar.fretboard.frets) {
-                val frettedNote = guitar.noteTable.get(string, fret)
-                if (scaleNotes.contains(frettedNote?.theoreticalNote)) {
+                val frettedNote = guitar.noteTable.get(string, fret)!!
+                if (diatonicKey.noteIsInKey(frettedNote.theoreticalNote)) {
                     val xCenterOfFretArea = fret.distanceFromNut - fret.distanceFromPreviousFret / 2
 
-                    var fillColor = whiteFill()    // default fill
-                    val noteNumber = chromaticScaleNotes.indexOf(frettedNote.theoreticalNote)
-                    when (noteNumber) {
-                        0 -> fillColor = chromaticFirstNoteFillColor()
-                        1 -> fillColor = chromaticSecondNoteFillColor()
-                        2 -> fillColor = chromaticThirdNoteFillColor()
-                        3 -> fillColor = chromaticFourthNoteFillColor()
-                        4 -> fillColor = chromaticFifthNoteFillColor()
-                        5 -> fillColor = chromaticSixthNoteFillColor()
-                        6 -> fillColor = chromaticSeventhNoteFillColor()
-                        7 -> fillColor = chromaticEighthNoteFillColor()
-                        8 -> fillColor = chromaticNinthNoteFillColor()
-                        9 -> fillColor = chromaticTenthNoteFillColor()
-                        10 -> fillColor = chromaticEleventhNoteFillColor()
-                        11 -> fillColor = chromaticTwelfthNoteFillColor()
-                        else -> {
-                            whiteFill()
-                        }
-                    }
+                    val noteNumberInChromaticKey = chromaticKey.noteNumberInKey(frettedNote.theoreticalNote)
+                    val fillColor = fillColorForChromaticScaleNoteNumber(noteNumberInChromaticKey)
 
                     canvas.drawCircle(xCenterOfFretArea * drawScale, yPosition * drawScale, 15f, fillColor)
                     canvas.drawCircle(xCenterOfFretArea * drawScale, yPosition * drawScale, 15f, blackStrokeOnePixel())
