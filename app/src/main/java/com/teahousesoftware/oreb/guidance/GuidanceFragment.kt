@@ -45,8 +45,8 @@ class GuidanceFragment : Fragment(), AdapterView.OnItemSelectedListener {
                               savedInstanceState: Bundle?): View? {
         val layout = inflater!!.inflate(R.layout.fragment_guidance, container, false)
 
-        // wire up the key spinner
-        val keySpinner = layout.findViewById(R.id.key_spinner) as Spinner
+        // wire up the currentTonic spinner
+        val keySpinner = layout.findViewById(R.id.tonic_spinner) as Spinner
         val keySpinnerAdapter = ArrayAdapter(
                 this.activity,
                 android.R.layout.simple_spinner_item,
@@ -57,7 +57,7 @@ class GuidanceFragment : Fragment(), AdapterView.OnItemSelectedListener {
         keySpinner.setOnItemSelectedListener(this)
         keySpinner.setSelection(DEFAULT_KEY.ordinal)
         
-        // wire up the scale spinner
+        // wire up the currentScale spinner
         val scaleSpinner = layout.findViewById(R.id.scale_spinner) as Spinner
         val scaleSpinnerAdapter = ArrayAdapter(
                 this.activity,
@@ -74,7 +74,7 @@ class GuidanceFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     override fun onItemSelected(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
         when (parent.id) {
-            R.id.key_spinner -> consumeSpinnerEvent { keySpinnerItemSelected(parent.getItemAtPosition(pos) as CharSequence) }
+            R.id.tonic_spinner -> consumeSpinnerEvent { keySpinnerItemSelected(parent.getItemAtPosition(pos) as CharSequence) }
             R.id.scale_spinner -> consumeSpinnerEvent { scaleSpinnerItemSelected(parent.getItemAtPosition(pos) as CharSequence) }
         }
     }
@@ -89,10 +89,10 @@ class GuidanceFragment : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     private fun keySpinnerItemSelected(keyName: CharSequence) {
-        orebViewModel.key.value = TheoreticalNote.values().find { it.descriptiveName == keyName }!!
+        orebViewModel.currentTonic.value = TheoreticalNote.values().find { it.descriptiveName == keyName }!!
     }
 
     private fun scaleSpinnerItemSelected(scaleName: CharSequence) {
-        orebViewModel.scale.value = orebViewModel.scales.find { it.name == scaleName }!!
+        orebViewModel.currentScale.value = orebViewModel.scales.find { it.name == scaleName }!!
     }
 }

@@ -31,8 +31,8 @@ class SelectorView : View, AnkoLogger {
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
-        val tonic = orebViewModel.key.value!!
-        val diatonicScale = orebViewModel.scale.value!!
+        val tonic = orebViewModel.currentTonic.value!!
+        val diatonicScale = orebViewModel.currentScale.value!!
         val diatonicKey = Key(tonic, diatonicScale)
 
         val chromaticScale = orebViewModel.scales.find { it.name == "Chromatic" }!!

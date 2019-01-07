@@ -84,9 +84,9 @@ class FretboardFragment : Fragment(), AdapterView.OnItemSelectedListener, AnkoLo
         magnificationSpinner.setOnItemSelectedListener(this)
         magnificationSpinner.setSelection(DEFAULT_MAGNIFICATION.ordinal)
 
-        // respond to changes in guidance:key and guidance:scale spinners
-        orebViewModel.key.observe(this, Observer { fretboardView.invalidate() })
-        orebViewModel.scale.observe(this, Observer { fretboardView.invalidate() })
+        // respond to changes in guidance:currentTonic and guidance:currentScale spinners
+        orebViewModel.currentTonic.observe(this, Observer { fretboardView.invalidate() })
+        orebViewModel.currentScale.observe(this, Observer { fretboardView.invalidate() })
 
         return fretboardLayout
     }

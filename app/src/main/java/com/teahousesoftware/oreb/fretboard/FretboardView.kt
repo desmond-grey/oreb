@@ -98,8 +98,8 @@ class FretboardView : View, AnkoLogger {
         drawStrings(canvas, drawScale, guitar.strings)
         drawCapo(canvas, drawScale, guitar)
 
-        val tonicNote = orebViewModel.key.value!!
-        val diatonicScale = orebViewModel.scale.value!!
+        val tonicNote = orebViewModel.currentTonic.value!!
+        val diatonicScale = orebViewModel.currentScale.value!!
         val diatonicKey = Key(tonicNote, diatonicScale)
         val chromaticScale = orebViewModel.scales.find { it.name == "Chromatic" }!!
         val chromaticKey = Key(diatonicKey.tonic, chromaticScale)   // todo: this should probably just be in the viewModel
@@ -159,7 +159,6 @@ class FretboardView : View, AnkoLogger {
     private fun drawFrets(canvas: Canvas, scale: Float, frets: List<Fret>) {
         for (fret in frets) {
             canvas.drawRect(fret.distanceFromNut * scale, 0f, (fret.distanceFromNut + fret.width) * scale, fret.height * scale, blackFill())
-            //            canvas.drawLine(fret.distanceFromNut * scale, 0, fret.distanceFromNut * scale, fret.height * scale, blackStrokeOnePixel);
         }
     }
 

@@ -35,8 +35,8 @@ class OrebActivity : AppCompatActivity(), AnkoLogger {
         orebViewModel.guitar = buildAndTuneLarrivee(
                 tunings.find { it.name == "Standard" }!!,
                 capos.find { it.name == "None" }!!)
-        orebViewModel.key.value = TheoreticalNote.C     // TODO: better default handling for these two
-        orebViewModel.scale.value = loadScalesFromAssets().find { it.name == "Major" }!!
+        orebViewModel.currentTonic.value = TheoreticalNote.C     // TODO: better default handling for these two
+        orebViewModel.currentScale.value = loadScalesFromAssets().find { it.name == "Major" }!!
 
         // load the fretboard fragment
         if (savedInstanceState == null) {
@@ -54,8 +54,8 @@ class OrebActivity : AppCompatActivity(), AnkoLogger {
 
         // the selector view is instantiated by the layout, but it needs us to do the observing for it
         val selectorView = findViewById(R.id.selector_view) as SelectorView
-        orebViewModel.key.observe(this, Observer { selectorView.invalidate() })
-        orebViewModel.scale.observe(this, Observer { selectorView.invalidate() })
+        orebViewModel.currentTonic.observe(this, Observer { selectorView.invalidate() })
+        orebViewModel.currentScale.observe(this, Observer { selectorView.invalidate() })
     }
 
     // ----- private

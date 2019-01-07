@@ -1,13 +1,14 @@
 <resources>
     <string name="app_name">Oreb</string>
+
+    <string name="capo">Capo:</string>
     <string name="tuning">Tuning:</string>
     <string name="magnification">Magnification:</string>
 
-    <string name="capo">Capo:</string>
-    <string name="scale">Scale:</string>
-    <string name="key">Key:</string>
-
     <string name="guidance_fragment_page_title">Guidance</string>
+    <string name="tonic">Tonic:</string>
+    <string name="scale">Scale:</string>
+
     <string name="info_fragment_page_title">Info</string>
 
     <string name="action_settings">Settings</string>

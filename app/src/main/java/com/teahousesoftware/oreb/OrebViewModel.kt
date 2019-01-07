@@ -20,8 +20,8 @@ class OrebViewModel : ViewModel() {
 
     lateinit var guitar:Guitar
 
-    val key = MutableLiveData<TheoreticalNote>()
-    val scale = MutableLiveData<Scale>()
+    val currentTonic = MutableLiveData<TheoreticalNote>()
+    val currentScale = MutableLiveData<Scale>()
 
     var drawScale: Float = DRAW_SCALE_MIN   // Driven by pinch/zoom scaling.  Start zoomed out.
 }
