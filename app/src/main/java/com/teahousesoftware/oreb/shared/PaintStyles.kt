@@ -227,7 +227,7 @@ fun blackStrokeFourPixels(): Paint {
 
 fun fillColorForChromaticScaleNoteNumber(noteNumber: Int): Paint {
     var fillColor = whiteFill()
-    when (noteNumber) {     // 1-12     todo: make 1-based counting
+    when (noteNumber) {
         1 -> fillColor = chromaticFirstNoteFillColor()
         2 -> fillColor = chromaticSecondNoteFillColor()
         3 -> fillColor = chromaticThirdNoteFillColor()
