@@ -246,20 +246,3 @@ fun fillColorForChromaticScaleNoteNumber(noteNumber: Int): Paint {
     }
     return fillColor
 }
-
-fun fillColorForNoteNumber(noteNumber: Int): Paint {    // 1-8
-    var fillColor = whiteFill()
-    when (noteNumber) {
-        1 -> fillColor = chromaticFirstNoteFillColor()
-        2 -> fillColor = chromaticThirdNoteFillColor()
-        3 -> fillColor = chromaticFifthNoteFillColor()
-        4 -> fillColor = chromaticSixthNoteFillColor()
-        5 -> fillColor = chromaticEighthNoteFillColor()
-        6 -> fillColor = chromaticTenthNoteFillColor()
-        7 -> fillColor = chromaticTwelfthNoteFillColor()
-        else -> {
-            whiteFill()
-        }
-    }
-    return fillColor
-}
