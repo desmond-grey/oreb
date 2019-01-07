@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
+import android.view.WindowManager
 import com.teahousesoftware.oreb.fretboard.FretboardFragment
 import com.teahousesoftware.oreb.selector.SelectorView
 import com.teahousesoftware.oreb.shared.model.guitar.Capo
@@ -56,6 +57,9 @@ class OrebActivity : AppCompatActivity(), AnkoLogger {
         val selectorView = findViewById(R.id.selector_view) as SelectorView
         orebViewModel.currentTonic.observe(this, Observer { selectorView.invalidate() })
         orebViewModel.currentScale.observe(this, Observer { selectorView.invalidate() })
+
+        // keep the screen on.  https://developer.android.com/training/scheduling/wakelock
+        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
     }
 
     // ----- private
