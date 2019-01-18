@@ -273,16 +273,19 @@ class FretboardView : View, AnkoLogger {
             val yPosition = string.yPosition
 
             for (fret in guitar.fretboard.frets) {
-                val frettedNote = guitar.noteTable.get(string, fret)!!
-                if (diatonicKey.noteIsInKey(frettedNote.theoreticalNote)) {
-                    val xCenterOfFretArea = fret.distanceFromNut - fret.distanceFromPreviousFret / 2
+                if (guitar.noteTable.get(string, fret) != null) {                   // when a capo is applied, not all fret positions have notes
+                    val frettedNote = guitar.noteTable.get(string, fret)
+                    if (diatonicKey.noteIsInKey(frettedNote.theoreticalNote)) {
+                        val xCenterOfFretArea = fret.distanceFromNut - fret.distanceFromPreviousFret / 2
 
-                    val noteNumberInChromaticKey = chromaticKey.noteNumberInKey(frettedNote.theoreticalNote)
-                    val fillColor = fillColorForChromaticScaleNoteNumber(noteNumberInChromaticKey)
+                        val noteNumberInChromaticKey = chromaticKey.noteNumberInKey(frettedNote.theoreticalNote)
+                        val fillColor = fillColorForChromaticScaleNoteNumber(noteNumberInChromaticKey)
 
-                    canvas.drawCircle(xCenterOfFretArea * drawScale, yPosition * drawScale, 15f, fillColor)
-                    canvas.drawCircle(xCenterOfFretArea * drawScale, yPosition * drawScale, 15f, blackStrokeOnePixel())
+                        canvas.drawCircle(xCenterOfFretArea * drawScale, yPosition * drawScale, 15f, fillColor)
+                        canvas.drawCircle(xCenterOfFretArea * drawScale, yPosition * drawScale, 15f, blackStrokeOnePixel())
+                    }
                 }
+
             }
         }
     }
