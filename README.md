@@ -1,11 +1,14 @@
 To Do
 -----
+. draw fret markers on fretboard (not under).
 . fretboard: handle note selection
-. implement drag/panning (framework code is already in place)
 
+. chords: implement chords fragment
+. implement "box" indicators
+
+. implement drag/panning (framework code is already in place)
 . info: handle info fragment
 . selector: implement selector fragment
-. chords: implement chords fragment
 . implement transport controls and timeline
 
 Guitar Measurements
