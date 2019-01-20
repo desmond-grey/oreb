@@ -17,4 +17,12 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <!-- spinners and their labels -->
+    <style name="Oreb.SpinnerLabel" parent="TextAppearance.AppCompat.Small" >
+        <item name="android:textSize" >14sp</item>
+    </style>
+
+    <style name="Oreb.SpinnerItemStyle" parent="android:Widget.TextView.SpinnerItem">
+        <item name="android:textSize" >14sp</item>
+    </style>
 </resources>

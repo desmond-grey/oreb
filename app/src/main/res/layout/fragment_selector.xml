@@ -32,7 +32,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/tonic"
-                android:textIsSelectable="false" />
+                android:textIsSelectable="false"
+                style="@style/Oreb.SpinnerLabel" />
 
             <Spinner
                 android:id="@+id/tonic_spinner"
@@ -53,7 +54,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/scale"
-                android:textIsSelectable="false" />
+                android:textIsSelectable="false"
+                style="@style/Oreb.SpinnerLabel" />
 
             <Spinner
                 android:id="@+id/scale_spinner"

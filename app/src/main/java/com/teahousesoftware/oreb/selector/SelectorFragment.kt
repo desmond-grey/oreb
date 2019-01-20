@@ -48,7 +48,7 @@ class SelectorFragment : Fragment(), AdapterView.OnItemSelectedListener, AnkoLog
         val tonicSpinner = selectorLayout.findViewById(R.id.tonic_spinner) as Spinner
         val tonicSpinnerAdapter = ArrayAdapter(
             this.activity,
-            android.R.layout.simple_spinner_item,
+            R.layout.oreb_spinner_item,
             TheoreticalNote.values().map { it.descriptiveName }
         )
         tonicSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -60,7 +60,7 @@ class SelectorFragment : Fragment(), AdapterView.OnItemSelectedListener, AnkoLog
         val scaleSpinner = selectorLayout.findViewById(R.id.scale_spinner) as Spinner
         val scaleSpinnerAdapter = ArrayAdapter(
             this.activity,
-            android.R.layout.simple_spinner_item,
+            R.layout.oreb_spinner_item,
             orebViewModel.scales.map { it.name }
         )
         scaleSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
