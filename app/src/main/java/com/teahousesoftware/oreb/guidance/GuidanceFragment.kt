@@ -36,14 +36,14 @@ class GuidanceFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        pageNum = arguments.getInt("pageNum", 0)
-        title = arguments.getString("title")
-        orebViewModel = ViewModelProviders.of(this.activity).get(OrebViewModel::class.java)
+        pageNum = arguments!!.getInt("pageNum", 0)
+        title = arguments!!.getString("title")
+        orebViewModel = ViewModelProviders.of(this.activity!!).get(OrebViewModel::class.java)
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val layout = inflater!!.inflate(R.layout.fragment_guidance, container, false)
+        val layout = inflater.inflate(R.layout.fragment_guidance, container, false)
 
         // wire up the currentTonic spinner
         val keySpinner = layout.findViewById(R.id.tonic_spinner) as Spinner

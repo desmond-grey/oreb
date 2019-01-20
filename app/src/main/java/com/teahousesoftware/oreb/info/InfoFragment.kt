@@ -12,18 +12,6 @@ class InfoFragment : Fragment() {
     private var pageNum: Int = 0
     private var title: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        pageNum = arguments.getInt("pageNum", 0)
-        title = arguments.getString("title")
-    }
-
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        val view = inflater!!.inflate(R.layout.fragment_info, container, false)
-        return view
-    }
-
     companion object {
         // newInstance constructor for creating fragment with arguments
         fun newInstance(page: Int, title: String): InfoFragment {
@@ -34,5 +22,17 @@ class InfoFragment : Fragment() {
             infoFragment.arguments = args
             return infoFragment
         }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        pageNum = arguments!!.getInt("pageNum", 0)
+        title = arguments!!.getString("title")
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+        val view = inflater.inflate(R.layout.fragment_info, container, false)
+        return view
     }
 }

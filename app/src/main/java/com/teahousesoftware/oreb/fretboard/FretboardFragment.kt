@@ -36,24 +36,24 @@ class FretboardFragment : Fragment(), AdapterView.OnItemSelectedListener, AnkoLo
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        orebViewModel = ViewModelProviders.of(this.activity).get(OrebViewModel::class.java)
+        orebViewModel = ViewModelProviders.of(this.activity!!).get(OrebViewModel::class.java)
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater?,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?): View? {
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?): View? {
 
         // Inflate the Fretboard Fragment layout
-        val fretboardLayout = inflater?.inflate(R.layout.fragment_fretboard, container, false)
+        val fretboardLayout = inflater.inflate(R.layout.fragment_fretboard, container, false)
         this.fretboardView = fretboardLayout?.findViewById(R.id.fretboard_view) as FretboardView
 
         // wire up the capo spinner
         val capoSpinner = fretboardLayout.findViewById(R.id.capo_spinner) as Spinner
         val capoSpinnerAdapter = ArrayAdapter(
-                this.activity,
-                android.R.layout.simple_spinner_item,
-                orebViewModel.capos.map { it.name }
+            this.activity,
+            android.R.layout.simple_spinner_item,
+            orebViewModel.capos.map { it.name }
         )
         capoSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         capoSpinner.adapter = capoSpinnerAdapter
@@ -63,9 +63,9 @@ class FretboardFragment : Fragment(), AdapterView.OnItemSelectedListener, AnkoLo
         // wire up the tuning spinner
         val tuningSpinner = fretboardLayout.findViewById(R.id.tuning_spinner) as Spinner
         val tuningSpinnerAdapter = ArrayAdapter(
-                this.activity,
-                android.R.layout.simple_spinner_item,
-                orebViewModel.tunings.map { it.name }
+            this.activity,
+            android.R.layout.simple_spinner_item,
+            orebViewModel.tunings.map { it.name }
         )
         tuningSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         tuningSpinner.adapter = tuningSpinnerAdapter
@@ -75,9 +75,9 @@ class FretboardFragment : Fragment(), AdapterView.OnItemSelectedListener, AnkoLo
         // wire up the magnification setting spinner
         val magnificationSpinner = fretboardLayout.findViewById(R.id.magnification_spinner) as Spinner
         val magnificationSpinnerAdapter = ArrayAdapter(
-                this.activity,
-                android.R.layout.simple_spinner_item,
-                MAGNIFICATIONS.values().map { it.descriptiveName }
+            this.activity,
+            android.R.layout.simple_spinner_item,
+            MAGNIFICATIONS.values().map { it.descriptiveName }
         )
         magnificationSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         magnificationSpinner.adapter = magnificationSpinnerAdapter
