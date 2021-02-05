@@ -13,4 +13,11 @@
 
     <string name="action_settings">Settings</string>
     <string name="left_control_pane_desc">temporary left control pane</string>
+
+    <!-- Scale Positions -->
+    <string name="scale_positions_fragment_page_title">Scale Positions</string>
+    <string name="scale_position_system_spinner_label">Scale Position System:</string>
+    <string name="scale_position_spinner_label">Scale Position:</string>
+    <string name="mark_notes_checkbox_text">Mark notes in the Scale Position</string>
+    <string name="dim_unselected_notes_checkbox_text">Dim notes not in the Scale Position</string>
 </resources>

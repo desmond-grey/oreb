@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- TODO: update font size/style of the spinners to match the text label.  Something like: http://tekeye.uk/android/examples/ui/changing-android-spinner-text-size-->
+<GridLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:useDefaultMargins="true"
+    android:alignmentMode="alignBounds"
+    android:rowOrderPreserved="false"
+    android:columnCount="4"
+    >
+
+    <TextView
+        android:id="@+id/scale_position_system_spinner_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/scale_position_system_spinner_label"
+        android:textIsSelectable="false"
+        style="@style/Oreb.SpinnerLabel" />
+    <Spinner
+        android:id="@+id/scale_position_system_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawSelectorOnTop="true" />
+
+    <TextView
+        android:id="@+id/scale_position_spinner_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_column="0"
+        android:layout_gravity="end"
+        android:text="@string/scale_position_spinner_label"
+        android:textIsSelectable="false"
+        style="@style/Oreb.SpinnerLabel" />
+    <Spinner
+        android:id="@+id/scale_position_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawSelectorOnTop="true" />
+
+    <CheckBox android:id="@+id/checkbox_cheese"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_columnSpan="4"
+        android:text="@string/mark_notes_checkbox_text" />
+
+    <CheckBox android:id="@+id/checkbox_meat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_columnSpan="4"
+        android:text="@string/dim_unselected_notes_checkbox_text" />
+
+</GridLayout>
