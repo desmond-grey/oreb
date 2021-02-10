@@ -273,7 +273,7 @@ class FretboardView : View, AnkoLogger {
             val yPosition = string.yPosition
 
             for (fret in guitar.fretboard.frets) {
-                if (guitar.noteTable.get(string, fret) != null) {                   // when a capo is applied, not all fret positions have notes
+                if (guitar.noteTable.get(string, fret) != null) {                   // null check because when a capo is applied, not all fret positions have notes
                     val frettedNote = guitar.noteTable.get(string, fret)
                     if (diatonicKey.noteIsInKey(frettedNote.theoreticalNote)) {
                         val xCenterOfFretArea = fret.distanceFromNut - fret.distanceFromPreviousFret / 2
