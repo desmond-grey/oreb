@@ -6,7 +6,7 @@ buildscript {
     repositories {
         google()
         jcenter()
-
+        mavenCentral()      // for strikt assertion library
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.5.0'
