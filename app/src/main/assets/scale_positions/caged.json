@@ -1,0 +1,182 @@
+{
+  "name": "CAGED",
+  "description": "In a nutshell, CAGED Scales are one way of exploring all the regions of the neck of the guitar. The system breaks down each region of the neck into an easy-to-navigate scale in one position. CAGED Scales are movable (by sliding the shape up or down frets), and can be used in any key.",
+  "reference_url": "https://www.guitarorb.com/caged-intervals/",
+  "compatibleTunings": [
+    "Standard"
+  ],
+  "compatibleScales": [
+    "Major Scale"
+  ],
+  "positions": [
+    {
+      "name": "Based on C Shape",
+      "string_scale_degrees": {
+        "string_6": [
+          3,
+          4,
+          5
+        ],
+        "string_5": [
+          6,
+          7,
+          1
+        ],
+        "string_4": [
+          2,
+          3,
+          4
+        ],
+        "string_3": [
+          5,
+          6
+        ],
+        "string_2": [
+          7,
+          1,
+          2
+        ],
+        "string_1": [
+          3,
+          4,
+          5
+        ]
+      }
+    },
+    {
+      "name": "Based on A Shape",
+      "string_scale_degrees": {
+        "string_6": [
+          5,
+          6
+        ],
+        "string_5": [
+          7,
+          1,
+          2
+        ],
+        "string_4": [
+          3,
+          4,
+          5
+        ],
+        "string_3": [
+          6,
+          7,
+          1
+        ],
+        "string_2": [
+          2,
+          3,
+          4
+        ],
+        "string_1": [
+          5,
+          6
+        ]
+      }
+    },
+    {
+      "name": "Based on G Shape",
+      "string_scale_degrees": {
+        "string_6": [
+          6,
+          7,
+          1
+        ],
+        "string_5": [
+          2,
+          3,
+          4
+        ],
+        "string_4": [
+          5,
+          6
+        ],
+        "string_3": [
+          7,
+          1,
+          2
+        ],
+        "string_2": [
+          3,
+          4,
+          5
+        ],
+        "string_1": [
+          6,
+          7,
+          1
+        ]
+      }
+    },
+    {
+      "name": "Based on E Shape",
+      "string_scale_degrees": {
+        "string_6": [
+          7,
+          1,
+          2
+        ],
+        "string_5": [
+          3,
+          4,
+          5
+        ],
+        "string_4": [
+          6,
+          7,
+          1
+        ],
+        "string_3": [
+          2,
+          3,
+          4
+        ],
+        "string_2": [
+          5,
+          6
+        ],
+        "string_1": [
+          7,
+          1,
+          2
+        ]
+      }
+    },
+    {
+      "name": "Based on D Shape",
+      "string_scale_degrees": {
+        "string_6": [
+          2,
+          3,
+          4
+        ],
+        "string_5": [
+          5,
+          6
+        ],
+        "string_4": [
+          7,
+          1,
+          2
+        ],
+        "string_3": [
+          3,
+          4,
+          5
+        ],
+        "string_2": [
+          6,
+          7,
+          1
+        ],
+        "string_1": [
+          2,
+          3,
+          4
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,258 @@
+{
+  "name": "3 Notes Per String",
+  "description": "With this system of learning scales, as the name implies, you play 3 notes per string across the fretboard for each position. There aren’t any changes from 3 notes, to 2 notes, back to 3 notes, like you find in the CAGED system. It’s more uniform in nature, which I think appeals to many guitarists and can make it a little easier to move through the scale.\n\nHowever, playing 3 notes per string requires a bit more flexibility as some of the notes are 4 frets apart. If you have small hands or lack adequate flexibility, you may find these patterns a little difficult to play.\n\nAlso, instead of 5 different patterns to learn (as with CAGED), there are 7. I find these patterns run together a bit and they’re not as distinct as the CAGED patterns. So learning them may take a bit longer.",
+  "reference_url": "https://appliedguitartheory.com/lessons/3-notes-per-string-major-scale-patterns/#:~:text=3%20notes%20per%20string%20major%20scale%20positions&text=Play%20each%20position%20ascending%20and,third%20note%20with%20the%20pinky.",
+  "compatibleTunings": [
+    "Standard"
+  ],
+  "compatibleScales": [
+    "Major Scale"
+  ],
+  "positions": [
+    {
+      "name": "Position 1",
+      "string_scale_degrees": {
+        "string_6": [
+          1,
+          2,
+          3
+        ],
+        "string_5": [
+          4,
+          5,
+          6
+        ],
+        "string_4": [
+          7,
+          1,
+          2
+        ],
+        "string_3": [
+          3,
+          4,
+          5
+        ],
+        "string_2": [
+          6,
+          7,
+          1
+        ],
+        "string_1": [
+          2,
+          3,
+          4
+        ]
+      }
+    },
+    {
+      "name": "Position 2",
+      "string_scale_degrees": {
+        "string_6": [
+          2,
+          3,
+          4
+        ],
+        "string_5": [
+          5,
+          6,
+          7
+        ],
+        "string_4": [
+          1,
+          2,
+          3
+        ],
+        "string_3": [
+          4,
+          5,
+          6
+        ],
+        "string_2": [
+          7,
+          1,
+          2
+        ],
+        "string_1": [
+          3,
+          4,
+          5
+        ]
+      }
+    },
+    {
+      "name": "Position 3",
+      "string_scale_degrees": {
+        "string_6": [
+          3,
+          4,
+          5
+        ],
+        "string_5": [
+          6,
+          7,
+          1
+        ],
+        "string_4": [
+          2,
+          3,
+          4
+        ],
+        "string_3": [
+          5,
+          6,
+          7
+        ],
+        "string_2": [
+          1,
+          2,
+          3
+        ],
+        "string_1": [
+          4,
+          5,
+          6
+        ]
+      }
+    },
+    {
+      "name": "Position 4",
+      "string_scale_degrees": {
+        "string_6": [
+          4,
+          5,
+          6
+        ],
+        "string_5": [
+          7,
+          1,
+          2
+        ],
+        "string_4": [
+          3,
+          4,
+          5
+        ],
+        "string_3": [
+          6,
+          7,
+          1
+        ],
+        "string_2": [
+          2,
+          3,
+          4
+        ],
+        "string_1": [
+          5,
+          6,
+          7
+        ]
+      }
+    },
+    {
+      "name": "Position 5",
+      "string_scale_degrees": {
+        "string_6": [
+          5,
+          6,
+          7
+        ],
+        "string_5": [
+          1,
+          2,
+          3
+        ],
+        "string_4": [
+          4,
+          5,
+          6
+        ],
+        "string_3": [
+          7,
+          1,
+          2
+        ],
+        "string_2": [
+          3,
+          4,
+          5
+        ],
+        "string_1": [
+          6,
+          7,
+          1
+        ]
+      }
+    },
+    {
+      "name": "Position 6",
+      "string_scale_degrees": {
+        "string_6": [
+          6,
+          7,
+          1
+        ],
+        "string_5": [
+          2,
+          3,
+          4
+        ],
+        "string_4": [
+          5,
+          6,
+          7
+        ],
+        "string_3": [
+          1,
+          2,
+          3
+        ],
+        "string_2": [
+          4,
+          5,
+          6
+        ],
+        "string_1": [
+          7,
+          1,
+          2
+        ]
+      }
+    },
+    {
+      "name": "Position 7",
+      "string_scale_degrees": {
+        "string_6": [
+          7,
+          1,
+          2
+        ],
+        "string_5": [
+          3,
+          4,
+          5
+        ],
+        "string_4": [
+          6,
+          7,
+          1
+        ],
+        "string_3": [
+          2,
+          3,
+          4
+        ],
+        "string_2": [
+          5,
+          6,
+          7
+        ],
+        "string_1": [
+          1,
+          2,
+          3
+        ]
+      }
+    }
+  ]
+}

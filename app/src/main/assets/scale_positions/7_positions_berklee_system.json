@@ -1,0 +1,81 @@
+{
+  "name": "7 Positions/Berklee System",
+  "description": "This is a variation of the William Leavitt/Berklee system from Modern Method for Guitar.",
+  "reference_url": "https://jenslarsen.nl/major-scale-7-positions-berklee-system/",
+  "compatibleTunings": [
+    "Standard"
+  ],
+  "compatibleScales": [
+    "Major Scale"
+  ],
+  "scalePositions": [
+    {
+      "name": "Position 1",
+      "string_scale_degrees": {
+        "string_6": [
+          4,
+          5,
+          6
+        ],
+        "string_5": [
+          7,
+          1,
+          2
+        ],
+        "string_4": [
+          3,
+          4,
+          5
+        ],
+        "string_3": [
+          6,
+          7,
+          1
+        ],
+        "string_2": [
+          2,
+          3
+        ],
+        "string_1": [
+          4,
+          5,
+          6
+        ]
+      }
+    },
+    {
+      "name": "Position 2",
+      "string_scale_degrees": {
+        "string_6": [
+          5,
+          6,
+          7
+        ],
+        "string_5": [
+          1,
+          2,
+          3
+        ],
+        "string_4": [
+          4,
+          5,
+          6
+        ],
+        "string_3": [
+          7,
+          1,
+          2
+        ],
+        "string_2": [
+          3,
+          4
+        ],
+        "string_1": [
+          5,
+          6,
+          7
+        ]
+      }
+    }
+  ]
+}
